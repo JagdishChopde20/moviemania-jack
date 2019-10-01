@@ -1,0 +1,24 @@
+
+<div class="embed-responsive embed-responsive-16by9 w-50">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/INLzqh7rZ-U?rel=0" allowfullscreen></iframe>
+  </div>
+  
+  <hr>
+  
+  <ul *ngIf="results else noData">
+     <li *ngFor="let result of results">
+        {{result.title}} <br>
+        {{moviesService.imageBaseUrl_w780 + result.poster_path }} <br>
+        <img src="{{moviesService.imageBaseUrl_w780 + result.poster_path }}" alt=""> <br><br>
+  
+        {{moviesService.imageBaseUrl_w780 + result.backdrop_path }} <br>
+        <img src="{{moviesService.imageBaseUrl_w780 + result.backdrop_path }}" alt=""> <br><br>
+     </li>
+       
+    <li>
+      <small> {{results | json}}</small>
+  
+    </li>
+  </ul>
+  <ng-template #noData>No Data Available</ng-template>
+  

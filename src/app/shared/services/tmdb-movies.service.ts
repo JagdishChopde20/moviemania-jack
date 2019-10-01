@@ -10,7 +10,7 @@ export class TmdbMoviesService {
 
   imageBaseUrl = "http://image.tmdb.org/t/p/";
 
-  MoviesDiscoverUrl = "https://api.themoviedb.org/3/discover/movie?api_key=fa95cddfa25a27f18e30bbdbd383054b&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=true&page=1";
+  MoviesDiscoverUrl = "https://api.themoviedb.org/3/discover/movie?api_key=fa95cddfa25a27f18e30bbdbd383054b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +29,10 @@ export class TmdbMoviesService {
 
   get imageBaseUrl_original(): string {
     return this.imageBaseUrl + "original"
+  }
+
+  get discoverResult(): any {
+    return this.getMoviesDiscover()
   }
 
   getMoviesDiscover() {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
 
 @Component({
   selector: 'app-movies-home',
@@ -7,12 +6,10 @@ import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
   styleUrls: ['./movies-home.component.css']
 })
 export class MoviesHomeComponent implements OnInit {
-  results$: any;
 
-  constructor(private moviesService: TmdbMoviesService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.results$ = this.moviesService.getMoviesDiscover();
   }
 
 }

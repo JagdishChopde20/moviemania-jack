@@ -5,7 +5,7 @@ import { DiscoverMoviesComponent } from './core/discover-movies/discover-movies.
 
 
 const routes: Routes = [
-  { path: 'movies-details', component: MoviesDetailsComponent },
+  { path: 'movies-details/:id', component: MoviesDetailsComponent },
   { path: '', component: DiscoverMoviesComponent }
 ];
 

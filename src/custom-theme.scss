@@ -30,7 +30,7 @@ $moviemania-light-theme: mat-light-theme($moviemania-primary, $moviemania-accent
 
 // Define an alternate dark theme.
 $dark-primary: mat-palette($mat-pink);
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-accent:  mat-palette($mat-indigo, A200, A100, A400);
 $dark-warn:    mat-palette($mat-deep-orange);
 $moviemania-dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 

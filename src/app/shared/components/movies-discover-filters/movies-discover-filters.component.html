@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">Discover Movies</mat-toolbar>
+
+<div class="m-2">
+    <small>Filters:</small>
+    <br>
+    <br>
+    <mat-form-field *ngIf="moviesService.genresResult$ | async as genresResults">
+        <mat-select placeholder="Genres" [formControl]="frmCtrl_genres" multiple>
+            <mat-select-trigger>
+                {{frmCtrl_genres.value ? frmCtrl_genres.value[0]?.name : ''}}
+                <span *ngIf="frmCtrl_genres.value?.length > 1" class="example-additional-selection">
+                    (+{{frmCtrl_genres.value.length - 1}} {{frmCtrl_genres.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let genresResult of genresResults" [value]="genresResult">{{genresResult.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-slide-toggle [formControl]="frmCtrl_adult">Adult Content</mat-slide-toggle>
+
+    <br>
+    <br>
+    <button mat-raised-button color="accent" (click)="applyFilters()" class="btn-block">
+        Apply Filters <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+</div>
+<!-- 
+<mat-nav-list>
+    <a mat-list-item href="#">Link 1</a>
+    <a mat-list-item href="#">Link 2</a>
+    <a mat-list-item href="#">Link 3</a>
+</mat-nav-list> -->

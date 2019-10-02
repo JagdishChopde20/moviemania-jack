@@ -1,0 +1,34 @@
+<div class="mat-app-background container-fluid mb-4">
+    <div class="row" *ngIf="moviesService.discoverResult$ | async as results else noData">
+        <div class="col-4 col-sm-4 col-md-3 col-xl-2 mt-3" *ngFor="let result of results">
+            <mat-card [routerLink]="['/movies-details', result.id]" style="padding-bottom: 0px; cursor: pointer;"
+                class="img-hover-zoom">
+                <img mat-card-image src="{{ moviesService.imageBaseUrl_w300 + result.poster_path }}"
+                    alt="{{result.title}}">
+            </mat-card>
+        </div>
+    </div>
+    <ng-template #noData>
+        <app-loading-spinner></app-loading-spinner>
+    </ng-template>
+    <hr>
+    <div *ngIf="moviesService.discoverResult$" class="row my-3">
+        <div class="col-md-6 mt-2">
+            {{moviesService.total_results | number}} results found. | showing page {{moviesService.page | number}} out
+            of
+            {{moviesService.total_pages | number}} pages. &nbsp;&nbsp;
+        </div>
+        <div class="col-md-6">
+            <div class="float-right">
+                <button mat-raised-button [disabled]="moviesService.page <= 1" color="accent" (click)="previousPage()">
+                    <mat-icon>keyboard_arrow_left</mat-icon> Previous Page
+                </button>
+                <button mat-mini-fab color="warn" class="mx-2"> {{moviesService.page}} </button>
+                <button mat-raised-button [disabled]="moviesService.page >= moviesService.total_pages" color="accent" (click)="nextPage()">
+                    Next Page <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

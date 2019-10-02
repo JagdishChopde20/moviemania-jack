@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { map, shareReplay } from 'rxjs/operators';
   templateUrl: './discover-movies.component.html',
   styleUrls: ['./discover-movies.component.css']
 })
-export class DiscoverMoviesComponent {
+export class DiscoverMoviesComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -17,8 +17,11 @@ export class DiscoverMoviesComponent {
     );
 
   toggleTheme: boolean = false;
-
+  
   constructor(private breakpointObserver: BreakpointObserver) { }
+
+  ngOnInit() {
+  }
 
   changeTheme() {
     this.toggleTheme = !this.toggleTheme;

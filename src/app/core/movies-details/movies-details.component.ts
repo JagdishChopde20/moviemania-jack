@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies-details',
@@ -9,18 +11,19 @@ import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
 export class MoviesDetailsComponent implements OnInit {
   results: any;
 
-  constructor(private moviesService: TmdbMoviesService) { }
+  constructor(private moviesService: TmdbMoviesService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
-  ngOnInit() {  
-    this.moviesService.discoverResult.subscribe(
+  ngOnInit() {
+    let movieId = this.route.snapshot.params.id;
+
+    this.moviesService.discoverResult$.subscribe(
       res => {
         console.log(res);
-
-        this.results = res.filter(x => x.id == 429617);
-        console.log(this.results);
-
+        this.results = res.filter(x => x.id == movieId)
       }
     );
-}
+  }
 
 }

@@ -4,6 +4,7 @@
     <small>Filters:</small>
     <br>
     <br>
+    <!-- Genres -->
     <mat-form-field *ngIf="moviesService.genresResult$ | async as genresResults">
         <mat-select placeholder="Genres" [formControl]="frmCtrl_genres" multiple>
             <mat-select-trigger>
@@ -16,6 +17,39 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+
+    <!-- Certification Country -->
+    <mat-form-field *ngIf="moviesService.certificationsResult$ | async as certificationsResult">
+        <mat-label>Country</mat-label>
+        <mat-select [formControl]="frmCtrl_country" (selectionChange)="countryChanged($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let certification of certificationsResult | certificationKeys" [value]="certification">
+                {{certification}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <!-- Certification -->
+    <mat-form-field>
+        <mat-label>Certificate</mat-label>
+        <mat-select [(ngModel)]="moviesService.certification" [disabled]="!moviesService.certification"
+            (selectionChange)="onClickOfCertificateField()">
+            <mat-option *ngFor="let certification of certificatesOfSelectedCountry"
+                [value]="certification.certification" [matTooltip]="certification.meaning" matTooltipPosition="after">
+                {{certification.certification}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+        <input matInput [(ngModel)]="moviesService.primary_release_date_gte" [max]="moviesService.primary_release_date_lte" [matDatepicker]="picker1" placeholder="Release date greater than">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+        <input matInput [(ngModel)]="moviesService.primary_release_date_lte" [min]="moviesService.primary_release_date_gte" [matDatepicker]="picker2" placeholder="Release date less than">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
 
     <mat-slide-toggle [formControl]="frmCtrl_adult">Adult Content</mat-slide-toggle>
 

@@ -3,8 +3,9 @@
         <div class="col-4 col-sm-4 col-md-3 col-xl-2 mt-3" *ngFor="let result of results">
             <mat-card [routerLink]="['/movies-details', result.id]" style="padding-bottom: 0px; cursor: pointer;"
                 class="img-hover-zoom">
-                <img mat-card-image src="{{ moviesService.imageBaseUrl_w300 + result.poster_path }}"
-                    alt="{{result.title}}">
+                    <img mat-card-image src="{{ moviesService.imageBaseUrl_w300 + result.poster_path }}"
+                    alt="{{result.title}}"
+                    onError="this.src='../../../../assets/images/ImageNotFound.jpg';">
             </mat-card>
         </div>
     </div>

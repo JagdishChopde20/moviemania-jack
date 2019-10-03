@@ -13,12 +13,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material';
+import { MatInputModule, MatNativeDateModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CertificationKeysPipe } from './pipes/certification-keys.pipe';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { CertificatesBottomsheetComponent } from './components/certificates-bottomsheet/certificates-bottomsheet.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
-  declarations: [LoadingSpinnerComponent, MoviesDiscoverFiltersComponent, MoviesListComponent],
+  declarations: [LoadingSpinnerComponent, MoviesDiscoverFiltersComponent, MoviesListComponent, CertificationKeysPipe, CertificatesBottomsheetComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([]),
@@ -33,7 +39,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatInputModule,
     MatSlideToggleModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatBottomSheetModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
   exports: [
     LoadingSpinnerComponent,
@@ -43,10 +53,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatToolbarModule,
     MoviesDiscoverFiltersComponent,
     MatSlideToggleModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatBottomSheetModule,
+    MatTooltipModule
   ],
   providers: [
-    TmdbMoviesService
+    TmdbMoviesService,
+    DatePipe
+  ],
+  entryComponents: [
+    CertificatesBottomsheetComponent
   ]
 })
 export class SharedModule { }

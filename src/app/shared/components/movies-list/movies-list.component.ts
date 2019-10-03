@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
 
 @Component({

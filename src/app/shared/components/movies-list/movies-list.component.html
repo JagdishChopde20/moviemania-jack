@@ -1,10 +1,28 @@
 <div class="mat-app-background container-fluid mb-4">
+    <div class="row mt-3">
+        <div class="col">
+            <mat-form-field appearance="outline" style="width: 100%">
+                <mat-label>Search Movies</mat-label>
+                <input matInput [(ngModel)]="moviesService.searchQuery" (keyup.enter)="searchMovies()"
+                    placeholder="Type your query...">
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-hint>Only langugae and adult filter will be used for searching.</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-auto mt-2">
+            <button mat-fab (click)="searchMovies()" aria-label="Example icon-button with a heart icon"
+                style="outline: none">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </div>
+
     <div class="row" *ngIf="moviesService.discoverResult$ | async as results else noData">
-        <div class="col-4 col-sm-4 col-md-3 col-xl-2 mt-3" *ngFor="let result of results">
+        <div class="col-4 col-sm-4 col-md-3 col-xl-2 mb-3" *ngFor="let result of results">
             <mat-card [routerLink]="['/movies-details', result.id]" style="padding-bottom: 0px; cursor: pointer;"
                 class="img-hover-zoom">
-                    <img mat-card-image src="{{ moviesService.imageBaseUrl_w300 + result.poster_path }}"
-                    alt="{{result.title}}"
+                <img mat-card-image src="{{ moviesService.imageBaseUrl_w300 + result.poster_path }}"
+                    matTooltip="{{result.title}}" matTooltipClass="movie-name-tooltip" alt="{{result.title}}"
                     onError="this.src='../../../../assets/images/ImageNotFound.jpg';">
             </mat-card>
         </div>
@@ -25,7 +43,8 @@
                     <mat-icon>keyboard_arrow_left</mat-icon> Previous Page
                 </button>
                 <button mat-mini-fab color="warn" class="mx-2"> {{moviesService.page}} </button>
-                <button mat-raised-button [disabled]="moviesService.page >= moviesService.total_pages" color="accent" (click)="nextPage()">
+                <button mat-raised-button [disabled]="moviesService.page >= moviesService.total_pages" color="accent"
+                    (click)="nextPage()">
                     Next Page <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
             </div>

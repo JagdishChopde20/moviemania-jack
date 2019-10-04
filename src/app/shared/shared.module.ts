@@ -22,9 +22,12 @@ import { CertificatesBottomsheetComponent } from './components/certificates-bott
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { ChipsKeywordsComponent } from './components/chips-keywords/chips-keywords.component';
 
 @NgModule({
-  declarations: [LoadingSpinnerComponent, MoviesDiscoverFiltersComponent, MoviesListComponent, CertificationKeysPipe, CertificatesBottomsheetComponent],
+  declarations: [LoadingSpinnerComponent, MoviesDiscoverFiltersComponent, MoviesListComponent, CertificationKeysPipe, CertificatesBottomsheetComponent, ChipsKeywordsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([]),
@@ -43,7 +46,9 @@ import { DatePipe } from '@angular/common';
     MatBottomSheetModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatChipsModule
   ],
   exports: [
     LoadingSpinnerComponent,

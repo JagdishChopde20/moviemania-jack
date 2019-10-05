@@ -5,8 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TmdbMoviesService } from './services/tmdb-movies.service';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { MoviesDiscoverFiltersComponent } from './components/movies-discover-filters/movies-discover-filters.component';
-import { MoviesListComponent } from '../shared/components/movies-list/movies-list.component';
+import { MoviesListComponent } from '../core/movies-list/movies-list.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,16 +17,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CertificationKeysPipe } from './pipes/certification-keys.pipe';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { CertificatesBottomsheetComponent } from './components/certificates-bottomsheet/certificates-bottomsheet.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DatePipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { ChipsKeywordsComponent } from './components/chips-keywords/chips-keywords.component';
+import { YearPickerComponent } from './components/year-picker/year-picker.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
-  declarations: [LoadingSpinnerComponent, MoviesDiscoverFiltersComponent, MoviesListComponent, CertificationKeysPipe, CertificatesBottomsheetComponent, ChipsKeywordsComponent],
+  declarations: [LoadingSpinnerComponent, MoviesListComponent, CertificationKeysPipe, ChipsKeywordsComponent, YearPickerComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([]),
@@ -48,26 +48,35 @@ import { ChipsKeywordsComponent } from './components/chips-keywords/chips-keywor
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
   ],
   exports: [
     LoadingSpinnerComponent,
     MoviesListComponent,
     MatIconModule,
     MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
     MatToolbarModule,
-    MoviesDiscoverFiltersComponent,
+    MatListModule,
+    MatSelectModule,
+    MatInputModule,
     MatSlideToggleModule,
     MatSnackBarModule,
     MatBottomSheetModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatDialogModule,
+    CertificationKeysPipe,
+    ChipsKeywordsComponent
   ],
   providers: [
     TmdbMoviesService,
-    DatePipe
-  ],
-  entryComponents: [
-    CertificatesBottomsheetComponent
   ]
 })
 export class SharedModule { }

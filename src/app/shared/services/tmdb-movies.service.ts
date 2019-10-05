@@ -11,6 +11,8 @@ import { DatePipe } from '@angular/common';
   providedIn: 'root'
 })
 export class TmdbMoviesService {
+  isHandset$: Observable<boolean>;
+  isLightTheme: boolean;
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar, private datepipe: DatePipe) { }
 
@@ -39,14 +41,17 @@ export class TmdbMoviesService {
   genresResult$: Observable<any>;
   certificationsResult$: Observable<any>;
 
-  // Filter variables
+  
+  // filters - search movies
   searchQuery: string;
+  primary_release_year: any;
 
+  // filters - discover movies
   page: number;
   total_results: number;
   total_pages: number;
   with_genres: string;
-  include_adult: string;
+  include_adult: boolean;
   certification_country: string;
   certification: string;
   primary_release_date_gte: Date;
@@ -117,13 +122,14 @@ export class TmdbMoviesService {
   getMoviesSearch_Filter(page: number) {
     // set filters
      this.page = (page && page > 0) ? page : 1;
-
+     
     let moviesSearchUrl = myGlobals.apiBaseUrl + "search/movie?api_key=" + myGlobals.apiKey
       + "&page=" + this.page
       + ((this.searchQuery && this.searchQuery != '') ? '&query=' + this.searchQuery : '')
       + ((this.with_original_language && this.with_original_language != '') ? '&language=' + this.with_original_language : '&language=en-US')
-      + ((this.include_adult) ? '&include_adult=true' : '&include_adult=false')
-      ;
+      + ((this.include_adult) ? '&include_adult=true' : '&include_adult=false'
+      + ((this.primary_release_year && this.primary_release_year._i && this.primary_release_year._i.year) ? '&primary_release_year=' + this.primary_release_year._i.year : '')
+      );
 
     console.log(moviesSearchUrl);
 

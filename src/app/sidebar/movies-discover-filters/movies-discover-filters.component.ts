@@ -1,11 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
+import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { take, debounceTime, switchMap } from 'rxjs/operators';
+import { MatDatepicker } from '@angular/material';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { CertificatesBottomsheetComponent } from '../certificates-bottomsheet/certificates-bottomsheet.component';
-import { Observable, Subscription } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import moment, { Moment } from 'moment';
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
+import { CertificatesBottomsheetComponent } from '../../shared/components/certificates-bottomsheet/certificates-bottomsheet.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogAdultConfirmComponent } from '../../shared/components/dialog-adult-confirm/dialog-adult-confirm.component';
 
 @Component({
   selector: 'app-movies-discover-filters',
@@ -29,7 +32,7 @@ export class MoviesDiscoverFiltersComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private moviesService: TmdbMoviesService, private _bottomSheet: MatBottomSheet) { }
+  constructor(private moviesService: TmdbMoviesService, private _bottomSheet: MatBottomSheet, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.moviesService.GetLanguages();
@@ -99,4 +102,38 @@ export class MoviesDiscoverFiltersComponent implements OnInit, OnDestroy {
     });
   }
 
+  _openDatepickerOnClick(datepicker: MatDatepicker<Moment>) {
+    if (!datepicker.opened) {
+      datepicker.open();
+    }
+  }
+
+  openDialog(): void {
+
+    console.log(this.moviesService.include_adult);
+
+    if (this.moviesService.include_adult) return;
+
+    const dialogRef = this.dialog.open(DialogAdultConfirmComponent, {
+      width: '',
+      data: { title: 'Enable Adult Content', text: 'Please provide your birthdate to proceed' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {   
+      if (result) {
+        let dateDiff = new Date().getFullYear() - new Date(result).getFullYear();
+        if (dateDiff >= 18) {
+          this.moviesService.include_adult = true;
+          alert('Adult content enabled as you are above 18 year old.')
+        }
+        else {
+          this.moviesService.include_adult = false;
+          alert('Sorry! Adult content allowed for above 18 year old only.');
+        }
+      }
+      else {
+        this.moviesService.include_adult = false;
+      }
+    });
+  }
 }

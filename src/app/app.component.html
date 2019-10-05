@@ -1,1 +1,47 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<!-- <app-discover-movies></app-discover-movies> -->
+
+<div [class.moviemania-light-theme]="moviesService.isLightTheme">
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #drawer class="sidenav" fixedInViewport
+            [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+            [opened]="(isHandset$ | async) === false">
+
+            <!-- Add Sidebar Content Here -->
+            <router-outlet  name="sidebar"></router-outlet>  
+            <!-- <app-movies-discover-filters></app-movies-discover-filters> -->
+
+        </mat-sidenav>
+        <mat-sidenav-content>
+
+            <mat-toolbar color="primary" class="app-toolbar">
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                    style="outline: none">
+                    <!-- *ngIf="isHandset$ | async" -->
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+                <span>MOVIEMANIA</span>
+                <!-- This fills the remaining space of the current row -->
+                <span class="example-fill-remaining-space"></span>
+                <mat-slide-toggle (click)="changeTheme()">Change Theme</mat-slide-toggle>
+
+            </mat-toolbar>
+
+            <!-- Add Primary Content Here -->
+            <router-outlet></router-outlet>  
+            <!-- <app-movies-list></app-movies-list> -->
+
+            <mat-toolbar color="primary">
+                <small>
+                    TMDB
+                </small>
+                <span class="example-fill-remaining-space"></span>
+                <small>
+                    <a mat-button href="https://jagdishchopde.wixsite.com/profile" target="_blank">&copy; 2019 Jagdish
+                        Chopde</a>
+                </small>
+            </mat-toolbar>
+
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

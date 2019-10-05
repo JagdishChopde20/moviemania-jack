@@ -1,11 +1,14 @@
 <div [class.moviemania-light-theme]="toggleTheme">
-
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-      <app-movies-discover-filters></app-movies-discover-filters>
+      
+      <!-- Add Sidebar Content Here -->
+      <!-- <app-movies-discover-filters></app-movies-discover-filters> -->
+
     </mat-sidenav>
     <mat-sidenav-content>
+
       <mat-toolbar color="primary" class="app-toolbar">
         <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" style="outline: none">
           <!-- *ngIf="isHandset$ | async" -->
@@ -17,8 +20,9 @@
         <mat-slide-toggle (click)="changeTheme()">Change Theme</mat-slide-toggle>
 
       </mat-toolbar>
-      <!-- Add Content Here -->
-      <app-movies-list></app-movies-list>
+
+      <!-- Add Primary Content Here -->
+      <!-- <app-movies-list></app-movies-list> -->
 
       <mat-toolbar color="primary">
         <small>

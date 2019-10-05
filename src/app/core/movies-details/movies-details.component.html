@@ -1,11 +1,73 @@
+<div class="container" *ngIf="result else noData">
 
-<!-- <div class="embed-responsive embed-responsive-16by9 w-50">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/INLzqh7rZ-U?rel=0" allowfullscreen></iframe>
+  <div class="row mx-4">
+    <!-- <img src="{{moviesService.imageBaseUrl_w780 + result.backdrop_path }}" class="img img-fluid" alt=""> -->
+    <p class="display-4">{{result.title}}</p>
   </div>
-   -->
+  <div class="row mx-2">
+    <div class="col-md-4">
+      <img src="{{moviesService.imageBaseUrl_w780 + result.poster_path }}" class="img img-fluid" alt="">
+    </div>
+
+    <div class="col-md-8">
+      <table class="table table-striped" [class.text-light]="!moviesService.isLightTheme"
+        [class.table-dark]="!moviesService.isLightTheme">
+        <thead>
+          <tr>
+            <td colspan="2"> <span class="lead">{{result.overview}}</span> </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="col">Release Date</th>
+            <td>{{result.release_date}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Language</th>
+            <td>{{result.original_language}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Adult</th>
+            <td>{{result.adult}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Genres</th>
+            <td>{{result.genre_ids}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Popularity</th>
+            <td>{{result.popularity}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Vote Count</th>
+            <td>{{result.vote_count}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Vote Average</th>
+            <td>{{result.vote_average}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="row mx-4">
+    <img src="{{moviesService.imageBaseUrl_w780 + result.backdrop_path }}" class="img img-fluid" alt="">
+  </div>
+
+</div>
+
+<ng-template #noData>
+    <span class="lead m-4">No data available</span>
+</ng-template>
+<!-- 
+<pre>{{ result | json }}</pre> -->
+
+<!-- 
   <hr>
   
-  <ul *ngIf="results else noData">
+  <ul *ngIf="!results else noData">
      <li *ngFor="let result of results">
         {{result.title}} <br>
         {{moviesService.imageBaseUrl_w780 + result.poster_path }} <br>
@@ -21,4 +83,9 @@
     </li>
   </ul>
   <ng-template #noData>No Data Available</ng-template>
-  
+   -->
+
+<!-- <div class="embed-responsive embed-responsive-16by9 w-50">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/INLzqh7rZ-U?rel=0" allowfullscreen></iframe>
+  </div>
+   -->

@@ -6,15 +6,25 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { RouterModule } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidebarModule } from './sidebar/sidebar.module';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
+    SidebarModule,
+    SharedModule,
+    MatSidenavModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

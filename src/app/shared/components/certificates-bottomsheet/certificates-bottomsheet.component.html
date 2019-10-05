@@ -1,4 +1,4 @@
-<span class="lead">Select movie for certificate {{certificatesData.selectedCountry}} </span>
+<span class="lead">Select certificate for country {{certificatesData.selectedCountry}} </span>
 <hr>
 <mat-nav-list>
     <a *ngFor="let certificate of certificatesData.certificates" mat-list-item (click)="openLink($event, certificate)">

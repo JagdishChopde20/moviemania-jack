@@ -54,24 +54,24 @@
         <mat-form-field class="w-100">
             <input matInput [(ngModel)]="moviesService.primary_release_date_gte" name="primary_release_date_gte"
                 [max]="moviesService.primary_release_date_lte" [matDatepicker]="picker1"
-                placeholder="Release date greater than">
+                placeholder="Release date greater than" (click)="_openDatepickerOnClick(picker1)">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+            <mat-datepicker #picker1 [touchUi]="(moviesService.isHandset$ | async)"></mat-datepicker>
         </mat-form-field>
 
         <!-- Release date less than -->
         <mat-form-field class="w-100">
             <input matInput [(ngModel)]="moviesService.primary_release_date_lte" name="primary_release_date_lte"
                 [min]="moviesService.primary_release_date_gte" [matDatepicker]="picker2"
-                placeholder="Release date less than">
+                placeholder="Release date less than" (click)="_openDatepickerOnClick(picker2)">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
+            <mat-datepicker #picker2 [touchUi]="(moviesService.isHandset$ | async)"></mat-datepicker>
         </mat-form-field>
 
         <app-chips-keywords></app-chips-keywords>
 
         <!-- Adult Content -->
-        <mat-slide-toggle [(ngModel)]="moviesService.include_adult" name="include_adult" class="w-100">Adult Content</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="moviesService.include_adult" name="include_adult" (click)="openDialog()" class="w-100">Adult Content</mat-slide-toggle>
 
         <br>
         <br>

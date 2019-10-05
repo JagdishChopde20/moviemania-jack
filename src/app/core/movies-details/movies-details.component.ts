@@ -9,7 +9,7 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./movies-details.component.css']
 })
 export class MoviesDetailsComponent implements OnInit {
-  results: any;
+  result: any;
 
   constructor(private moviesService: TmdbMoviesService,
     private route: ActivatedRoute,
@@ -20,8 +20,8 @@ export class MoviesDetailsComponent implements OnInit {
 
     this.moviesService.discoverResult$.subscribe(
       res => {
-        console.log(res);
-        this.results = res.filter(x => x.id == movieId)
+        this.result = res.filter(x => x.id == movieId)[0];
+        console.log(this.result);
       }
     );
   }

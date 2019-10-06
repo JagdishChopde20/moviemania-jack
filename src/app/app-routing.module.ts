@@ -7,18 +7,17 @@ import { MoviesListComponent } from './core/movies-list/movies-list.component';
 
 
 const routes: Routes = [
+  // { path: '',   redirectTo: '/core', pathMatch: 'full' },
   { path: '', component: MoviesListComponent },
   {
     path: '',
     component: MoviesDiscoverFiltersComponent,
     outlet: "sidebar"
   },
-  {
-    path: "movies-sidebar",
-    component: MoviesDiscoverFiltersComponent,
-    outlet: "sidebar"
-  },
-  { path: 'movies-details/:id', component: MoviesDetailsComponent },
+  
+  // { path: 'movies-details/:id', component: MoviesDetailsComponent },
+  // { path: '', component: MoviesListComponent },
+  // { path: '**', component: MoviesListComponent },
 ];
 
 @NgModule({

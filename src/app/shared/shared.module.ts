@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TmdbMoviesService } from './services/tmdb-movies.service';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { MoviesListComponent } from '../core/movies-list/movies-list.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,10 +23,19 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ChipsKeywordsComponent } from './components/chips-keywords/chips-keywords.component';
 import { YearPickerComponent } from './components/year-picker/year-picker.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MovieDetailsOverviewComponent } from './components/movie-details-overview/movie-details-overview.component';
+import { MovieDetailsVideosComponent } from './components/movie-details-videos/movie-details-videos.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
-  declarations: [LoadingSpinnerComponent, MoviesListComponent, CertificationKeysPipe, ChipsKeywordsComponent, YearPickerComponent],
+  declarations: [
+    LoadingSpinnerComponent, 
+    CertificationKeysPipe, 
+    ChipsKeywordsComponent, 
+    YearPickerComponent, 
+    MovieDetailsOverviewComponent, 
+    MovieDetailsVideosComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild([]),
@@ -49,11 +57,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule
   ],
   exports: [
     LoadingSpinnerComponent,
-    MoviesListComponent,
     MatIconModule,
     MatButtonModule,
     FormsModule,
@@ -73,7 +81,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatChipsModule,
     MatDialogModule,
     CertificationKeysPipe,
-    ChipsKeywordsComponent
+    ChipsKeywordsComponent,
+    MovieDetailsOverviewComponent,
+    MovieDetailsVideosComponent,
+    YearPickerComponent, 
   ],
   providers: [
     TmdbMoviesService,

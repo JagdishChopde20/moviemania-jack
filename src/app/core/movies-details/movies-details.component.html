@@ -1,91 +1,15 @@
-<div class="container" *ngIf="result else noData">
+<div *ngIf="result$ | async as result else noData">
 
-  <div class="row mx-4">
-    <!-- <img src="{{moviesService.imageBaseUrl_w780 + result.backdrop_path }}" class="img img-fluid" alt=""> -->
-    <p class="display-4">{{result.title}}</p>
-  </div>
-  <div class="row mx-2">
-    <div class="col-md-4">
-      <img src="{{moviesService.imageBaseUrl_w780 + result.poster_path }}" class="img img-fluid" alt="">
-    </div>
-
-    <div class="col-md-8">
-      <table class="table table-striped" [class.text-light]="!moviesService.isLightTheme"
-        [class.table-dark]="!moviesService.isLightTheme">
-        <thead>
-          <tr>
-            <td colspan="2"> <span class="lead">{{result.overview}}</span> </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="col">Release Date</th>
-            <td>{{result.release_date}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Language</th>
-            <td>{{result.original_language}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Adult</th>
-            <td>{{result.adult}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Genres</th>
-            <td>{{result.genre_ids}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Popularity</th>
-            <td>{{result.popularity}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Vote Count</th>
-            <td>{{result.vote_count}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Vote Average</th>
-            <td>{{result.vote_average}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+  <div class="row mx-4 mt-3">
+    <p class="display-4" style="font-size: 6vw">{{result.title}}</p>
   </div>
 
-  <div class="row mx-4">
-    <img src="{{moviesService.imageBaseUrl_w780 + result.backdrop_path }}" class="img img-fluid" alt="">
-  </div>
-
+  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+    <mat-tab label="OVERVIEW"> <app-movie-details-overview [movieOverview]="result"></app-movie-details-overview> </mat-tab>
+    <mat-tab label="VIDEOS"> <app-movie-details-videos [movieVideos]="result.videos.results"></app-movie-details-videos> </mat-tab>
+  </mat-tab-group>
 </div>
 
 <ng-template #noData>
-    <span class="lead m-4">No data available</span>
+  <app-loading-spinner></app-loading-spinner>
 </ng-template>
-<!-- 
-<pre>{{ result | json }}</pre> -->
-
-<!-- 
-  <hr>
-  
-  <ul *ngIf="!results else noData">
-     <li *ngFor="let result of results">
-        {{result.title}} <br>
-        {{moviesService.imageBaseUrl_w780 + result.poster_path }} <br>
-        <img src="{{moviesService.imageBaseUrl_w780 + result.poster_path }}" alt=""> <br><br>
-  
-        {{moviesService.imageBaseUrl_w780 + result.backdrop_path }} <br>
-        <img src="{{moviesService.imageBaseUrl_w780 + result.backdrop_path }}" alt=""> <br><br>
-     </li>
-       
-    <li>
-      <small> {{results | json}}</small>
-  
-    </li>
-  </ul>
-  <ng-template #noData>No Data Available</ng-template>
-   -->
-
-<!-- <div class="embed-responsive embed-responsive-16by9 w-50">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/INLzqh7rZ-U?rel=0" allowfullscreen></iframe>
-  </div>
-   -->

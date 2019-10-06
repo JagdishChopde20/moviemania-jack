@@ -18,13 +18,13 @@ import { SidebarModule } from './sidebar/sidebar.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
     SidebarModule,
     SharedModule,
     MatSidenavModule,
     LayoutModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

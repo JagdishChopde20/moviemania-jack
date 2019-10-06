@@ -1,0 +1,8 @@
+<mat-grid-list *ngIf="movieVideoUrls" [cols]="(moviesService.isHandset$ | async) ? 1 : 2" rowHeight="2:1"
+    class=" h-100 w-100">
+    <mat-grid-tile *ngFor="let videoUrl of movieVideoUrls">
+        <div class="embed-responsive embed-responsive-21by9">
+            <iframe class="embed-responsive-item" [src]="videoUrl" allowfullscreen></iframe>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

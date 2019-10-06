@@ -34,14 +34,14 @@ export class TmdbMoviesService {
   }
 
   // Results
-  isDiscoverResults: boolean = true;
+  moviesUrl: string;
 
   discoverResult$: Observable<any>;
   languagesResult$: Observable<any>;
   genresResult$: Observable<any>;
   certificationsResult$: Observable<any>;
 
-  
+
   // filters - search movies
   searchQuery: string;
   primary_release_year: any;
@@ -86,7 +86,7 @@ export class TmdbMoviesService {
   // Discover Movies
   getMoviesDiscover_Filter(page: number) {
     // set filters
-    this.page = (page && page > 0) ? page : 1;    
+    this.page = (page && page > 0) ? page : 1;
 
     let primary_release_date_gte_formatted = (this.primary_release_date_gte ? this.datepipe.transform(this.primary_release_date_gte, 'yyyy-MM-dd') : null);
     let primary_release_date_lte_formatted = (this.primary_release_date_lte ? this.datepipe.transform(this.primary_release_date_lte, 'yyyy-MM-dd') : null);
@@ -100,58 +100,63 @@ export class TmdbMoviesService {
       this.with_keywords = newArray.join(',');
     }
 
-    let moviesDiscoverUrl = myGlobals.apiBaseUrl + "discover/movie?api_key=" + myGlobals.apiKey +
-      "&language=en-US&sort_by=popularity.desc&include_video=true&page=" + this.page
+    this.moviesUrl = myGlobals.apiBaseUrl + "discover/movie?api_key=" + myGlobals.apiKey +
+      "&language=en-US&sort_by=popularity.desc&include_video=true"
       + ((this.include_adult) ? '&include_adult=true' : '&include_adult=false')
       + ((this.with_genres && this.with_genres != '') ? '&with_genres=' + this.with_genres : '')
       + ((this.certification_country && this.certification_country != '' && this.certification && this.certification != '') ? '&certification_country=' + this.certification_country + '&certification=' + this.certification : '')
       + ((primary_release_date_gte_formatted && primary_release_date_gte_formatted != '') ? '&primary_release_date.gte=' + primary_release_date_gte_formatted : '')
       + ((primary_release_date_lte_formatted && primary_release_date_lte_formatted != '') ? '&primary_release_date.lte=' + primary_release_date_lte_formatted : '')
       + ((this.with_original_language && this.with_original_language != '') ? '&with_original_language=' + this.with_original_language : '')
-      + ((this.with_keywords && this.with_keywords != '') ? '&with_keywords=' + this.with_keywords : '')
-      ;
+      + ((this.with_keywords && this.with_keywords != '') ? '&with_keywords=' + this.with_keywords : ''
+        + "&page=" + this.page
+      );
 
-    console.log(moviesDiscoverUrl);
+    console.log(this.moviesUrl);
 
-    this.discoverResult$ = this.getMovies_FromServer(moviesDiscoverUrl);
-    this.isDiscoverResults = true;
+    this.discoverResult$ = this.getMovies_FromServer(this.moviesUrl);
     this.searchQuery = null;
   }
 
   // Search Movies
   getMoviesSearch_Filter(page: number) {
     // set filters
-     this.page = (page && page > 0) ? page : 1;
-     
-    let moviesSearchUrl = myGlobals.apiBaseUrl + "search/movie?api_key=" + myGlobals.apiKey
-      + "&page=" + this.page
+    this.page = (page && page > 0) ? page : 1;
+
+    this.moviesUrl = myGlobals.apiBaseUrl + "search/movie?api_key=" + myGlobals.apiKey
       + ((this.searchQuery && this.searchQuery != '') ? '&query=' + this.searchQuery : '')
       + ((this.with_original_language && this.with_original_language != '') ? '&language=' + this.with_original_language : '&language=en-US')
       + ((this.include_adult) ? '&include_adult=true' : '&include_adult=false'
-      + ((this.primary_release_year && this.primary_release_year._i && this.primary_release_year._i.year) ? '&primary_release_year=' + this.primary_release_year._i.year : '')
+        + ((this.primary_release_year && this.primary_release_year._i && this.primary_release_year._i.year) ? '&primary_release_year=' + this.primary_release_year._i.year : '')
+        + "&page=" + this.page
       );
 
-    console.log(moviesSearchUrl);
+    console.log(this.moviesUrl);
 
-    this.discoverResult$ = this.getMovies_FromServer(moviesSearchUrl);
-    this.isDiscoverResults = false;
+    this.discoverResult$ = this.getMovies_FromServer(this.moviesUrl);
+  }
+  
+  // Get Similar Movies
+  GetSimilarMovies(movieId: string) {
+    this.moviesUrl = myGlobals.apiBaseUrl + "movie/" + movieId + "/similar?api_key=" + myGlobals.apiKey + "&language=en-US&page=1";
+    console.log(this.moviesUrl);
+
+    this.discoverResult$ = this.getMovies_FromServer(this.moviesUrl);
   }
 
   getNextPage() {
-    if (this.page < this.total_pages) {
-      if (this.isDiscoverResults)
-        this.getMoviesDiscover_Filter(++this.page);
-      else
-        this.getMoviesSearch_Filter(++this.page);
+    if ((this.page < this.total_pages) && this.moviesUrl) {
+      let nextPageUrl = this.moviesUrl.substring(0, this.moviesUrl.lastIndexOf('=') + 1) + (++this.page);
+      console.log(nextPageUrl);
+      this.discoverResult$ = this.getMovies_FromServer(nextPageUrl);
     }
   }
 
   getPreviousPage() {
-    if (this.page > 1) {
-      if (this.isDiscoverResults)
-        this.getMoviesDiscover_Filter(--this.page);
-      else
-        this.getMoviesSearch_Filter(--this.page);
+    if ((this.page > 1) && this.moviesUrl) {
+      let previousPageUrl = this.moviesUrl.substring(0, this.moviesUrl.lastIndexOf('=') + 1) + (--this.page);
+      console.log(previousPageUrl);
+      this.discoverResult$ = this.getMovies_FromServer(previousPageUrl);
     }
   }
 
@@ -178,4 +183,11 @@ export class TmdbMoviesService {
     let keywords_url = myGlobals.apiBaseUrl + "search/keyword?api_key=" + myGlobals.apiKey + "&query=" + query + "&page=1";
     return this.http.get(keywords_url).pipe(map(data => _.values(data['results'])));
   }
+
+  // Get Movie Details
+  GetMovieDetails(movieId: string) {
+    let movieDetails_url = myGlobals.apiBaseUrl + "movie/" + movieId + "?api_key=" + myGlobals.apiKey + "&language=en-US&append_to_response=videos,images";
+    return this.http.get(movieDetails_url).pipe(map(data => data));
+  }
+
 }

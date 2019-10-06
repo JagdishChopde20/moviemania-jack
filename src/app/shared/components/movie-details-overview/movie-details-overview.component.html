@@ -1,0 +1,60 @@
+<div class="container-fluid" *ngIf="movieOverview else noData">
+
+    <div class="row my-3">
+        <div class="col-md-4">
+            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.poster_path }}" class="img img-fluid img-thumbnail" alt="">
+        </div>
+
+        <div class="col-md-8">
+            <table class="table table-striped" [class.text-light]="!moviesService.isLightTheme"
+                [class.table-dark]="!moviesService.isLightTheme">
+                <thead>
+                    <tr>
+                        <td colspan="2"> <span class="lead">{{movieOverview.overview}}</span> </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="col">Release Date</th>
+                        <td>{{movieOverview.release_date}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Language</th>
+                        <td>{{movieOverview.original_language}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Adult</th>
+                        <td>{{movieOverview.adult}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Genres</th>
+                        <td>{{movieOverview.genre_ids}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Popularity</th>
+                        <td>{{movieOverview.popularity}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Vote Count</th>
+                        <td>{{movieOverview.vote_count}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Vote Average</th>
+                        <td>{{movieOverview.vote_average}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <img src="{{moviesService.imageBaseUrl_w1280 + movieOverview.backdrop_path }}" class="img img-fluid w-100"
+            alt="">
+    </div>
+
+</div>
+
+<ng-template #noData>
+    <div class="lead m-4" style="min-height: 100vh;">No data available</div>
+</ng-template>

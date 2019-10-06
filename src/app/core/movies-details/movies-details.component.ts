@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies-details',
@@ -9,21 +8,17 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./movies-details.component.css']
 })
 export class MoviesDetailsComponent implements OnInit {
-  result: any;
+  movieId;
+  result$: any;
 
-  constructor(private moviesService: TmdbMoviesService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+  constructor(private route: ActivatedRoute, private moviesService: TmdbMoviesService) { }
 
   ngOnInit() {
-    let movieId = this.route.snapshot.params.id;
+    this.movieId = this.route.snapshot.params.id;
 
-    this.moviesService.discoverResult$.subscribe(
-      res => {
-        this.result = res.filter(x => x.id == movieId)[0];
-        console.log(this.result);
-      }
-    );
+    if (this.movieId) {
+      this.result$ = this.moviesService.GetMovieDetails(this.movieId);
+    }
   }
 
 }

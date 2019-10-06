@@ -15,7 +15,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   constructor(private moviesService: TmdbMoviesService) { }
 
   ngOnInit() {
-    this.moviesService.getMoviesDiscover_Filter(1);
+    // Load discover as initial movies
+    if (!this.moviesService.discoverResult$)
+      this.moviesService.getMoviesDiscover_Filter(1);
   }
 
   ngOnDestroy() {

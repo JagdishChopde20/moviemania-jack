@@ -12,13 +12,13 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DialogAdultConfirmComponent } from '../shared/components/dialog-adult-confirm/dialog-adult-confirm.component';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [
-  {
-    path: 'movies-sidebar/:id',
-    component: MovieListSidebarComponent,
-    outlet: "sidebar"
-  },
-];
+// const routes: Routes = [
+//   {
+//     path: 'movies-sidebar/:id',
+//     component: MovieListSidebarComponent,
+//     outlet: "sidebar"
+//   },
+// ];
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     MatMomentDateModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild([]),
   ],
   exports: [
     MoviesDiscoverFiltersComponent,

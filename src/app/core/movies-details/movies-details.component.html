@@ -1,13 +1,37 @@
-<div *ngIf="result$ | async as result else noData">
+<div *ngIf="result$ | async as result else noData" style="min-height: 100vh;">
 
   <div class="row mx-4 mt-3">
     <p class="display-4" style="font-size: 6vw">{{result.title}}</p>
   </div>
-
+  
   <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-    <mat-tab label="OVERVIEW"> <app-movie-details-overview [movieOverview]="result"></app-movie-details-overview> </mat-tab>
-    <mat-tab label="VIDEOS"> <app-movie-details-videos [movieVideos]="result.videos.results"></app-movie-details-videos> </mat-tab>
+    <mat-tab> 
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">list</mat-icon> &nbsp;
+            OVERVIEW
+          </ng-template>
+      <app-movie-details-overview [movieOverview]="result"></app-movie-details-overview> 
+    </mat-tab>
+
+    <mat-tab> 
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">image</mat-icon> &nbsp;
+            IMAGES ({{ result.images.backdrops.length + result.images.posters.length }})
+          </ng-template>
+      <app-movie-details-images [movieImages]="result.images"></app-movie-details-images> 
+    </mat-tab>
+
+    <mat-tab> 
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">movie</mat-icon> &nbsp;
+            VIDEOS ({{result.videos.results.length}})
+          </ng-template>
+      <app-movie-details-videos [movieVideos]="result.videos.results"></app-movie-details-videos> 
+    </mat-tab>
   </mat-tab-group>
+
+  <!-- <pre class="text-light"> {{ result.images | json}} </pre> -->
+
 </div>
 
 <ng-template #noData>

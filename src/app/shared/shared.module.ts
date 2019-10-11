@@ -26,6 +26,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MovieDetailsOverviewComponent } from './components/movie-details-overview/movie-details-overview.component';
 import { MovieDetailsVideosComponent } from './components/movie-details-videos/movie-details-videos.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MovieDetailsImagesComponent } from './components/movie-details-images/movie-details-images.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MoviesGridViewComponent } from './components/movies-grid-view/movies-grid-view.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ChipsKeywordsComponent, 
     YearPickerComponent, 
     MovieDetailsOverviewComponent, 
-    MovieDetailsVideosComponent
+    MovieDetailsVideosComponent, 
+    MovieDetailsImagesComponent, MoviesGridViewComponent, 
   ],
   imports: [
     CommonModule,
@@ -58,7 +62,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatAutocompleteModule,
     MatChipsModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTabsModule,
   ],
   exports: [
     LoadingSpinnerComponent,
@@ -84,6 +89,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ChipsKeywordsComponent,
     MovieDetailsOverviewComponent,
     MovieDetailsVideosComponent,
+    MovieDetailsImagesComponent,
     YearPickerComponent, 
   ],
   providers: [

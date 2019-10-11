@@ -10,10 +10,10 @@ import { MoviesDetailsComponent } from './movies-details/movies-details.componen
 import { MoviesListComponent } from '../core/movies-list/movies-list.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
-const routes: Routes = [
-  { path: 'core', component: MoviesListComponent },
-  { path: 'movies-details/:id', component: MoviesDetailsComponent },
-];
+// const routes: Routes = [
+//   { path: 'core', component: MoviesListComponent },
+//   { path: 'movies-details/:id', component: MoviesDetailsComponent },
+// ];
 
 @NgModule({
     
@@ -21,7 +21,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild([]),
     LayoutModule,
     MatSidenavModule,
     MatTabsModule

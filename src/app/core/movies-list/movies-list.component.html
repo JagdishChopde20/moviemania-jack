@@ -1,4 +1,4 @@
-<div class="mat-app-background container-fluid mb-4">
+<div class="mat-app-background container-fluid mb-4" style="min-height: 100vh;">
     <div class="row my-3">
         <div class="col">
             <mat-form-field appearance="outline" style="width: 100%">
@@ -49,12 +49,12 @@
         </div>
         <div class="col-md-6">
             <div class="float-right">
-                <button mat-raised-button [disabled]="moviesService.page <= 1" color="accent" (click)="previousPage()">
+                <button mat-raised-button [disabled]="moviesService.page <= 1" color="accent" (click)="previousPage()" style="outline: none;">
                     <mat-icon>keyboard_arrow_left</mat-icon> Previous Page
                 </button>
                 <button mat-mini-fab color="warn" class="mx-2"> {{moviesService.page}} </button>
                 <button mat-raised-button [disabled]="moviesService.page >= moviesService.total_pages" color="accent"
-                    (click)="nextPage()">
+                    (click)="nextPage()" style="outline: none;">
                     Next Page <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
             </div>

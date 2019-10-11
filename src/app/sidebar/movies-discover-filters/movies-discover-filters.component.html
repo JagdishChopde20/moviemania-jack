@@ -1,4 +1,14 @@
-<mat-toolbar color="primary">Discover Movies</mat-toolbar>
+<mat-toolbar color="primary">
+    Discover 
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+    
+    <button type="button" mat-icon-button
+        [routerLink]="['', { outlets: { primary: ['core'], sidebar: ['movies-sidebar'] } }]" style="outline: none"
+        mat-mini-fab color="primary">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button> 
+</mat-toolbar>
 
 <div class="m-2">
     <small>Filters:</small>
@@ -6,7 +16,8 @@
     <form>
         <!-- Languages -->
         <mat-form-field class="w-100">
-            <input type="text" placeholder="Language" aria-label="Number" matInput [formControl]="frmCtrl_language" [matAutocomplete]="auto">
+            <input type="text" placeholder="Language" aria-label="Number" matInput [formControl]="frmCtrl_language"
+                [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                 <mat-option *ngFor="let option of filteredOptions_Languages" [value]="option">
                     {{option.english_name}} &nbsp;&nbsp; <code>{{option.name}}</code>
@@ -32,7 +43,8 @@
         <!-- Certification Country -->
         <mat-form-field *ngIf="moviesService.certificationsResult$ | async as certificationsResult" class="w-100">
             <mat-label>Country</mat-label>
-            <mat-select [(ngModel)]="moviesService.certification_country" name="certification_country" (selectionChange)="countryChanged($event)">
+            <mat-select [(ngModel)]="moviesService.certification_country" name="certification_country"
+                (selectionChange)="countryChanged($event)">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let certification of certificationsResult | certificationKeys"
                     [value]="certification">
@@ -42,7 +54,8 @@
         <!-- Certification -->
         <mat-form-field class="w-100">
             <mat-label>Certificate</mat-label>
-            <mat-select [(ngModel)]="moviesService.certification" name="certification" [disabled]="!moviesService.certification">
+            <mat-select [(ngModel)]="moviesService.certification" name="certification"
+                [disabled]="!moviesService.certification">
                 <mat-option *ngFor="let certification of certificatesOfSelectedCountry"
                     [value]="certification.certification" [matTooltip]="certification.meaning"
                     matTooltipPosition="after">
@@ -71,7 +84,8 @@
         <app-chips-keywords></app-chips-keywords>
 
         <!-- Adult Content -->
-        <mat-slide-toggle [(ngModel)]="moviesService.include_adult" name="include_adult" (click)="openDialog()" class="w-100">Adult Content</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="moviesService.include_adult" name="include_adult" (click)="openDialog()"
+            class="w-100">Adult Content</mat-slide-toggle>
 
         <br>
         <br>

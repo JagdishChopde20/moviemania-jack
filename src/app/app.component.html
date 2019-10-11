@@ -8,28 +8,44 @@
             [opened]="(isHandset$ | async) === false">
 
             <!-- Add Sidebar Content Here -->
-            <router-outlet  name="sidebar"></router-outlet>  
-            <!-- <app-movies-discover-filters></app-movies-discover-filters> -->
+            <router-outlet name="sidebar"></router-outlet>
 
         </mat-sidenav>
         <mat-sidenav-content>
 
             <mat-toolbar color="primary" class="app-toolbar">
+                <button type="button" mat-icon-button (click)="goBack()" style="outline: none" mat-mini-fab
+                    color="primary">
+                    <mat-icon aria-label="Side nav toggle icon">keyboard_arrow_left</mat-icon>
+                </button>
                 <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
                     style="outline: none">
                     <!-- *ngIf="isHandset$ | async" -->
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                 </button>
-                <span>MOVIEMANIA</span>
+                <span>
+                    <button mat-button style="font-size: 20px;"
+                        [routerLink]="['', { outlets: { primary: ['core'], sidebar: ['movies-sidebar'] } }]">
+                        MOVIEMANIA
+                    </button></span>
                 <!-- This fills the remaining space of the current row -->
                 <span class="example-fill-remaining-space"></span>
-                <mat-slide-toggle (click)="changeTheme()">Change Theme</mat-slide-toggle>
+                
+                <mat-button-toggle-group #group="matButtonToggleGroup" (click)="changeTheme(group.value)">
+                    <mat-button-toggle value="dark" aria-label="Text align left"
+                        style="background-color: black; color: white;">
+                        <mat-icon style="color: deeppink;">format_color_fill</mat-icon> <span *ngIf="!(isHandset$ | async)">Dark</span> 
+                    </mat-button-toggle>
+                    <mat-button-toggle value="light" aria-label="Text align center"
+                        style="background-color: white; color: black;">
+                        <mat-icon style="color: dodgerblue">format_color_fill</mat-icon> <span *ngIf="!(isHandset$ | async)">Light</span> 
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
 
             </mat-toolbar>
 
             <!-- Add Primary Content Here -->
-            <router-outlet></router-outlet>  
-            <!-- <app-movies-list></app-movies-list> -->
+            <router-outlet></router-outlet>
 
             <mat-toolbar color="primary">
                 <small>

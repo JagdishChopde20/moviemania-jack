@@ -136,9 +136,17 @@ export class TmdbMoviesService {
     this.discoverResult$ = this.getMovies_FromServer(this.moviesUrl);
   }
   
-  // Get Similar Movies
-  GetSimilarMovies(movieId: string) {
-    this.moviesUrl = myGlobals.apiBaseUrl + "movie/" + movieId + "/similar?api_key=" + myGlobals.apiKey + "&language=en-US&page=1";
+  // Get similar, recommendations, lists Movies
+  GetRelatedMoviesByMovieId(movieId: string, categoryName: string) {
+    this.moviesUrl = myGlobals.apiBaseUrl + "movie/" + movieId + "/" + categoryName + "?api_key=" + myGlobals.apiKey + "&language=en-US&page=1";
+    console.log(this.moviesUrl);
+
+    this.discoverResult$ = this.getMovies_FromServer(this.moviesUrl);
+  }
+
+  // Get similar, recommendations, lists Movies
+  GetMoviesByCategory(categoryName: string) {
+    this.moviesUrl = myGlobals.apiBaseUrl + "movie/" + categoryName + "?api_key=" + myGlobals.apiKey + "&language=en-US&page=1";
     console.log(this.moviesUrl);
 
     this.discoverResult$ = this.getMovies_FromServer(this.moviesUrl);
@@ -186,7 +194,7 @@ export class TmdbMoviesService {
 
   // Get Movie Details
   GetMovieDetails(movieId: string) {
-    let movieDetails_url = myGlobals.apiBaseUrl + "movie/" + movieId + "?api_key=" + myGlobals.apiKey + "&language=en-US&append_to_response=videos,images";
+    let movieDetails_url = myGlobals.apiBaseUrl + "movie/" + movieId + "?api_key=" + myGlobals.apiKey + "&language=en,null&append_to_response=videos,images";
     return this.http.get(movieDetails_url).pipe(map(data => data));
   }
 

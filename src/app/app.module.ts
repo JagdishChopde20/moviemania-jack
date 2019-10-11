@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarModule } from './sidebar/sidebar.module';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
     MatSidenavModule,
     LayoutModule,
     AppRoutingModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

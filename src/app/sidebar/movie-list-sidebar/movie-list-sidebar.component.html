@@ -1,10 +1,55 @@
-<mat-toolbar color="primary">Related Movies</mat-toolbar>
+<mat-toolbar color="primary">
+    Menus
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+    <button type="button" mat-icon-button
+        [routerLink]="['', { outlets: { primary: ['core'], sidebar: ['discover-filters'] } }]" style="outline: none"
+        mat-mini-fab color="primary">
+        <mat-icon aria-label="Side nav toggle icon">search</mat-icon>
+    </button>
+</mat-toolbar>
 
 
-<mat-nav-list>
-    <a mat-list-item (click)="navigateToSimilarMovies()" routerLinkActive="active">Similar Movies</a>
-    <a mat-list-item (click)="navigateToSimilarMovies()">Recommendations</a>
-    <a mat-list-item href="#">Link 3</a>
+<mat-nav-list *ngIf="movieId">
+    <a mat-list-item (click)="navigateToRelatedMoviesByMovieId('similar')" routerLinkActive="active"
+        matTooltip="Get a list of similar movies for the selected movie." matTooltipPosition="after">
+        Similar Movies
+    </a>
+
+    <a mat-list-item (click)="navigateToRelatedMoviesByMovieId('recommendations')"
+        matTooltip="Get a list of recommended movies for the selected movie." matTooltipPosition="after">
+        Recommendations
+    </a>
+
+    <!-- <a mat-list-item (click)="navigateToRelatedMoviesByMovieId('lists')">Collection</a> -->
+    <mat-divider></mat-divider>
 </mat-nav-list>
 
-{{movieId}}
+<mat-nav-list>
+
+    <a mat-list-item [routerLink]="['', { outlets: { primary: ['core'], sidebar: ['discover-filters'] } }]"
+        matTooltip="Discover movies by filters." matTooltipPosition="after">
+        Discover
+    </a>
+
+    <a mat-list-item (click)="navigateToMoviesByCategory('now_playing')" matTooltip="Get a list of movies in theatres."
+        matTooltipPosition="after">
+        Now Playing
+    </a>
+
+    <!-- <a mat-list-item (click)="navigateToMoviesByCategory('latest')">Latest</a> -->
+    <a mat-list-item (click)="navigateToMoviesByCategory('popular')" matTooltip="Get a list of popular movies."
+        matTooltipPosition="after">
+        Popular
+    </a>
+
+    <a mat-list-item (click)="navigateToMoviesByCategory('top_rated')" matTooltip="Get a list of top rated movies."
+        matTooltipPosition="after">
+        Top Rated
+    </a>
+
+    <a mat-list-item (click)="navigateToMoviesByCategory('upcoming')"
+        matTooltip="Get a list of upcoming movies in theatres." matTooltipPosition="after">
+        Upcoming
+    </a>
+</mat-nav-list>

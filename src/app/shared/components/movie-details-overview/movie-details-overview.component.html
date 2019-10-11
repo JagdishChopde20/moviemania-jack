@@ -2,7 +2,8 @@
 
     <div class="row my-3">
         <div class="col-md-4">
-            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.poster_path }}" class="img img-fluid img-thumbnail" alt="">
+            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.poster_path }}"
+                class="img img-fluid img-thumbnail" alt="">
         </div>
 
         <div class="col-md-8">
@@ -14,33 +15,88 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr *ngIf="movieOverview.status">
+                        <th scope="col">Status</th>
+                        <td>{{movieOverview.status}}</td>
+                    </tr>
+                    <tr *ngIf="movieOverview.release_date">
                         <th scope="col">Release Date</th>
                         <td>{{movieOverview.release_date}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="movieOverview.original_language">
                         <th scope="row">Language</th>
                         <td>{{movieOverview.original_language}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="movieOverview.spoken_languages">
+                        <th scope="row">Spoken Languages</th>
+                        <td>
+                            <span *ngFor="let lang of movieOverview.spoken_languages"> {{lang.name}}, </span>etc.
+                        </td>
+                    </tr>
+                    <tr *ngIf="movieOverview.adult">
                         <th scope="row">Adult</th>
                         <td>{{movieOverview.adult}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="movieOverview.genres">
                         <th scope="row">Genres</th>
-                        <td>{{movieOverview.genre_ids}}</td>
+                        <td>
+                            <span *ngFor="let genre of movieOverview.genres"> {{genre.name}},</span> etc.
+                        </td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="movieOverview.production_countries">
+                        <th scope="row">Production Countries</th>
+                        <td>
+                            <span *ngFor="let prodCountry of movieOverview.production_countries">
+                                {{prodCountry.name}},</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="movieOverview.production_companies">
+                        <th scope="row">Production Companies</th>
+                        <td>
+                            <span *ngFor="let prodCompany of movieOverview.production_companies">
+                                {{prodCompany.name}}({{prodCompany.origin_country}}),</span> etc.
+                        </td>
+                    </tr>
+                    <tr *ngIf="movieOverview.budget">
+                        <th scope="row">Budget</th>
+                        <td>{{movieOverview.budget | currency}}</td>
+                    </tr>
+                    <tr *ngIf="movieOverview.revenue">
+                        <th scope="row">Revenue</th>
+                        <td>{{movieOverview.revenue | currency}}</td>
+                    </tr>
+                    <tr *ngIf="movieOverview.runtime">
+                        <th scope="row">Runtime</th>
+                        <td>{{movieOverview.runtime}} mins</td>
+                    </tr>
+                    <tr *ngIf="movieOverview.popularity">
                         <th scope="row">Popularity</th>
                         <td>{{movieOverview.popularity}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="movieOverview.vote_count">
                         <th scope="row">Vote Count</th>
                         <td>{{movieOverview.vote_count}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="movieOverview.vote_average">
                         <th scope="row">Vote Average</th>
                         <td>{{movieOverview.vote_average}}</td>
+                    </tr>
+                    <tr *ngIf="movieOverview.tagline">
+                        <th scope="row">Tagline</th>
+                        <td>{{movieOverview.tagline}}</td>
+                    </tr>
+                    <tr *ngIf="movieOverview.homepage">
+                        <th scope="row">Homepage</th>
+                        <td> <a href="{{movieOverview.homepage}}" target="_blank">{{movieOverview.homepage}}</a> </td>
+                    </tr>
+                    <tr *ngIf="movieOverview.belongs_to_collection.name">
+                        <th scope="row">Belongs To Collection</th>
+                        <td>
+                            {{movieOverview.belongs_to_collection.name}}
+
+                            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.belongs_to_collection.poster_path }}" class="img-fluid">
+                            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.belongs_to_collection.backdrop_path }}" class="img-fluid">
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TmdbMoviesService } from '../../services/tmdb-movies.service';
 
 @Component({
   selector: 'app-movies-grid-view',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movies-grid-view.component.css']
 })
 export class MoviesGridViewComponent implements OnInit {
+  @Input('results') results: any;
 
-  constructor() { }
+  constructor(private moviesService: TmdbMoviesService) { }
 
   ngOnInit() {
   }

@@ -1,9 +1,13 @@
+<!-- <pre class="text-dark">data: {{movieOverview | json}} </pre> -->
+
+
+
 <div class="container-fluid" *ngIf="movieOverview else noData">
 
     <div class="row my-3">
         <div class="col-md-4">
             <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.poster_path }}"
-                class="img img-fluid img-thumbnail" alt="">
+                onError="this.src='../../../../assets/images/ImageNotFound.jpg';" class="img img-fluid img-thumbnail" alt="">
         </div>
 
         <div class="col-md-8">
@@ -37,20 +41,20 @@
                         <th scope="row">Adult</th>
                         <td>{{movieOverview.adult}}</td>
                     </tr>
-                    <tr *ngIf="movieOverview.genres">
+                    <tr *ngIf="movieOverview.genres && movieOverview.genres.length > 0">
                         <th scope="row">Genres</th>
                         <td>
                             <span *ngFor="let genre of movieOverview.genres"> {{genre.name}},</span> etc.
                         </td>
                     </tr>
-                    <tr *ngIf="movieOverview.production_countries">
+                    <tr *ngIf="movieOverview.production_countries && movieOverview.production_countries.length > 0">
                         <th scope="row">Production Countries</th>
                         <td>
                             <span *ngFor="let prodCountry of movieOverview.production_countries">
                                 {{prodCountry.name}},</span>
                         </td>
                     </tr>
-                    <tr *ngIf="movieOverview.production_companies">
+                    <tr *ngIf="movieOverview.production_companies && movieOverview.production_companies.length > 0">
                         <th scope="row">Production Companies</th>
                         <td>
                             <span *ngFor="let prodCompany of movieOverview.production_companies">
@@ -89,13 +93,15 @@
                         <th scope="row">Homepage</th>
                         <td> <a href="{{movieOverview.homepage}}" target="_blank">{{movieOverview.homepage}}</a> </td>
                     </tr>
-                    <tr *ngIf="movieOverview.belongs_to_collection.name">
+                    <tr *ngIf="movieOverview.belongs_to_collection">
                         <th scope="row">Belongs To Collection</th>
                         <td>
                             {{movieOverview.belongs_to_collection.name}}
 
-                            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.belongs_to_collection.poster_path }}" class="img-fluid">
-                            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.belongs_to_collection.backdrop_path }}" class="img-fluid">
+                            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.belongs_to_collection.poster_path }}"
+                                class="img-fluid">
+                            <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.belongs_to_collection.backdrop_path }}"
+                                class="img-fluid">
                         </td>
                     </tr>
                 </tbody>

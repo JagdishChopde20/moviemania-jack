@@ -21,3 +21,14 @@
   mat-sidenav-content {
     overflow: unset;
   }
+
+  
+.button-gototop {
+  position: fixed;
+  bottom: 50px;
+  right: 5px;
+  font-size: 20px;
+  text-align: center;
+  outline: none;
+  z-index: 100;
+}

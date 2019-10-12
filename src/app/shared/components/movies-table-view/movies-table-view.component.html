@@ -1,0 +1,56 @@
+<!-- <pre class="text-light">{{results | json}} </pre> -->
+
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" *ngIf="dataSource && dataSource.length > 0">
+    <!-- <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+        <th mat-header-cell *matHeaderCellDef> {{column | uppercase}} </th>
+        <td mat-cell *matCellDef="let element">
+            <img src="{{ moviesService.imageBaseUrl_w300 + element.poster_path }}" alt="{{element.title}}"
+                onError="this.src='../../../../assets/images/ImageNotFound.jpg';"
+                style="width: 50px; margin-bottom: 0px;">
+            {{element[column]}}
+        </td>
+    </ng-container> -->
+
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> TITLE </th>
+        <td mat-cell *matCellDef="let element">
+            <img src="{{ moviesService.imageBaseUrl_w300 + element.poster_path }}" alt="{{element.title}}"
+                onError="this.src='../../../../assets/images/ImageNotFound.jpg';" style="width: 30px;"> &nbsp;
+            {{element['title']}}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="release_date">
+        <th mat-header-cell *matHeaderCellDef class="text-right"> RELEASE YEAR </th>
+        <td mat-cell *matCellDef="let element" class="text-right">
+            {{element['release_date'] | date:'yyyy'}}
+        </td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+            <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <div>
+                    <img src="{{ moviesService.imageBaseUrl_w300 + element.poster_path }}" alt="{{element.title}}"
+                        onError="this.src='../../../../assets/images/ImageNotFound.jpg';"
+                        style="width: 200px; margin-bottom: 15px;">
+                </div>
+                <div class="example-element-description">
+                    {{element.overview}}
+                    <br><br>
+                    <button mat-raised-button class="float-right" color="accent" style="outline: none;"
+                    [routerLink]="['', { outlets: { primary: ['movies-details', element.id], sidebar: ['movies-sidebar', element.id] } }]">
+                        View all details <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>

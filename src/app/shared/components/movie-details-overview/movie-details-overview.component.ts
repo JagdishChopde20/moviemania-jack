@@ -12,7 +12,5 @@ export class MovieDetailsOverviewComponent implements OnInit {
   constructor(private moviesService: TmdbMoviesService) { }
 
   ngOnInit() {  
-    
   }
-
 }

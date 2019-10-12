@@ -126,16 +126,16 @@ export class TmdbMoviesService {
     this.moviesUrl = myGlobals.apiBaseUrl + "search/movie?api_key=" + myGlobals.apiKey
       + ((this.searchQuery && this.searchQuery != '') ? '&query=' + this.searchQuery : '')
       + ((this.with_original_language && this.with_original_language != '') ? '&language=' + this.with_original_language : '&language=en-US')
-      + ((this.include_adult) ? '&include_adult=true' : '&include_adult=false'
-        + ((this.primary_release_year && this.primary_release_year._i && this.primary_release_year._i.year) ? '&primary_release_year=' + this.primary_release_year._i.year : '')
-        + "&page=" + this.page
-      );
+      + ((this.include_adult) ? '&include_adult=true' : '&include_adult=false')
+      + ((this.primary_release_year && this.primary_release_year._i && this.primary_release_year._i.year) ? '&primary_release_year=' + this.primary_release_year._i.year : '')
+      + "&page=" + this.page
+      ;
 
     console.log(this.moviesUrl);
 
     this.discoverResult$ = this.getMovies_FromServer(this.moviesUrl);
   }
-  
+
   // Get similar, recommendations, lists Movies
   GetRelatedMoviesByMovieId(movieId: string, categoryName: string) {
     this.moviesUrl = myGlobals.apiBaseUrl + "movie/" + movieId + "/" + categoryName + "?api_key=" + myGlobals.apiKey + "&language=en-US&page=1";

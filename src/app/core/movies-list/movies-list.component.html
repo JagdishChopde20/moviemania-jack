@@ -6,9 +6,12 @@
                 <input matInput [(ngModel)]="moviesService.searchQuery" (keyup.enter)="searchMovies()"
                     placeholder="Type your query...">
                 <mat-icon matSuffix>search</mat-icon>
-                <mat-hint>Note: Only langugae and adult filters will be used for searching.</mat-hint>
+                <mat-hint>
+                    Note: Adult filter is {{ moviesService.include_adult ? 'ON' : 'OFF' }}.
+                    <a mat-button (click)="changeAdultFilter()">change</a>
+                </mat-hint>
             </mat-form-field>
-        </div>        
+        </div>
         <div class="col-2">
             <app-year-picker [touchUi]="!(moviesService.isHandset$ | async)"></app-year-picker>
         </div>
@@ -19,23 +22,24 @@
             </button>
         </div>
     </div>
-    
-    <div class="row" *ngIf="moviesService.discoverResult$ | async as results else noData">
-        <div class="col-4 col-sm-4 col-md-3 col-xl-2 mb-3" *ngFor="let result of results">
-            <mat-card [routerLink]="['', { outlets: { primary: ['movies-details', result.id], sidebar: ['movies-sidebar', result.id] } }]" style="padding-bottom: 0px; cursor: pointer;"
-                class="img-hover-zoom">
-                <!-- Show on small screens without tooltip as adding it stops scolling on touch UI -->
-                <img mat-card-image src="{{ moviesService.imageBaseUrl_w300 + result.poster_path }}"
-                    alt="{{result.title}}" onError="this.src='../../../../assets/images/ImageNotFound.jpg';"
-                    *ngIf="(moviesService.isHandset$ | async)">
 
-                <!-- Show on big screens with tooltip as adding it doens't affect scolling -->
-                <img mat-card-image src="{{ moviesService.imageBaseUrl_w300 + result.poster_path }}"
-                    alt="{{result.title}}" onError="this.src='../../../../assets/images/ImageNotFound.jpg';"
-                    matTooltip="{{result.title}}" matTooltipClass="movie-name-tooltip"
-                    *ngIf="!(moviesService.isHandset$ | async)">
-            </mat-card>
+    <div *ngIf="moviesService.discoverResult$ | async as results else noData" class="m-2">
+        <div class="row" *ngIf="results && results.length > 0">
+            <mat-button-toggle-group #group="matButtonToggleGroup" (click)="switchView(group.value)"
+                class="ml-auto m-2" [value]="isGridView? 'grid':'list'">
+                <mat-button-toggle value="grid" aria-label="Text align left" is>
+                    <mat-icon>apps</mat-icon> Grid View
+                </mat-button-toggle>
+                <mat-button-toggle value="list" aria-label="Text align center">
+                    <mat-icon>menu</mat-icon> List View
+                </mat-button-toggle>
+            </mat-button-toggle-group>
         </div>
+        <div class="row">
+            <app-movies-grid-view *ngIf="isGridView" [results]="results" class="ml-2"></app-movies-grid-view>
+            <app-movies-table-view *ngIf="!isGridView" [results]="results"></app-movies-table-view>
+        </div>
+
     </div>
     <ng-template #noData>
         <app-loading-spinner></app-loading-spinner>
@@ -49,10 +53,11 @@
         </div>
         <div class="col-md-6">
             <div class="float-right">
-                <button mat-raised-button [disabled]="moviesService.page <= 1" color="accent" (click)="previousPage()" style="outline: none;">
+                <button mat-raised-button [disabled]="moviesService.page <= 1" color="accent" (click)="previousPage()"
+                    style="outline: none;">
                     <mat-icon>keyboard_arrow_left</mat-icon> Previous Page
                 </button>
-                <button mat-mini-fab color="warn" class="mx-2"> {{moviesService.page}} </button>
+                <button mat-mini-fab color="warn" class="mx-2" style="outline: none;"> {{moviesService.page}} </button>
                 <button mat-raised-button [disabled]="moviesService.page >= moviesService.total_pages" color="accent"
                     (click)="nextPage()" style="outline: none;">
                     Next Page <mat-icon>keyboard_arrow_right</mat-icon>

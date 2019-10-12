@@ -9,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MoviesDetailsComponent } from './movies-details/movies-details.component';
 import { MoviesListComponent } from '../core/movies-list/movies-list.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // const routes: Routes = [
 //   { path: 'core', component: MoviesListComponent },
@@ -24,7 +25,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     RouterModule.forChild([]),
     LayoutModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonToggleModule
   ],
   exports: [
     MoviesListComponent

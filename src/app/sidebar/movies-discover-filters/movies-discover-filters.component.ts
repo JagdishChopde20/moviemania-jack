@@ -109,9 +109,6 @@ export class MoviesDiscoverFiltersComponent implements OnInit, OnDestroy {
   }
 
   openDialog(): void {
-
-    console.log(this.moviesService.include_adult);
-
     if (this.moviesService.include_adult) return;
 
     const dialogRef = this.dialog.open(DialogAdultConfirmComponent, {

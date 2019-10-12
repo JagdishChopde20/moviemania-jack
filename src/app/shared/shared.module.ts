@@ -29,6 +29,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MovieDetailsImagesComponent } from './components/movie-details-images/movie-details-images.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MoviesGridViewComponent } from './components/movies-grid-view/movies-grid-view.component';
+import { MoviesTableViewComponent } from './components/movies-table-view/movies-table-view.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { MoviesGridViewComponent } from './components/movies-grid-view/movies-gr
     YearPickerComponent, 
     MovieDetailsOverviewComponent, 
     MovieDetailsVideosComponent, 
-    MovieDetailsImagesComponent, MoviesGridViewComponent, 
+    MovieDetailsImagesComponent, 
+    MoviesGridViewComponent, 
+    MoviesTableViewComponent, 
   ],
   imports: [
     CommonModule,
@@ -64,6 +68,7 @@ import { MoviesGridViewComponent } from './components/movies-grid-view/movies-gr
     MatDialogModule,
     MatGridListModule,
     MatTabsModule,
+    MatTableModule
   ],
   exports: [
     LoadingSpinnerComponent,
@@ -91,6 +96,8 @@ import { MoviesGridViewComponent } from './components/movies-grid-view/movies-gr
     MovieDetailsVideosComponent,
     MovieDetailsImagesComponent,
     YearPickerComponent, 
+    MoviesGridViewComponent,
+    MoviesTableViewComponent, 
   ],
   providers: [
     TmdbMoviesService,

@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
 
   goBack() {
     this._location.back();
+    window.scrollTo(0, 0);
   }
 
   

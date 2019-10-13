@@ -7,7 +7,8 @@
     <div class="row my-3">
         <div class="col-md-4">
             <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.poster_path }}"
-                onError="this.src='../../../../assets/images/ImageNotFound.jpg';" class="img img-fluid img-thumbnail" alt="">
+                onError="this.src='../../../../assets/images/ImageNotFound.jpg';" class="img img-fluid img-thumbnail"
+                alt="">
         </div>
 
         <div class="col-md-8">
@@ -19,6 +20,23 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr *ngIf="movieOverview.vote_average">
+                        <th scope="row">Rating</th>
+                        <td>
+                            <div style="margin-bottom: -40px;">
+                                <mat-progress-spinner color="primary" mode="determinate"
+                                    [value]="movieOverview.vote_average * 10"
+                                    [class.mat-spinner-color-bad]="movieOverview.vote_average <= 5"
+                                    [class.mat-spinner-color-average]="movieOverview.vote_average > 5 && movieOverview.vote_average < 7"
+                                    [class.mat-spinner-color-good]="movieOverview.vote_average >= 7"
+                                    aria-label="Rating">
+                                </mat-progress-spinner>
+                                <div style="position:relative; top: -73px; left: 28px; font-size: 30px; font-weight: bold;">
+                                    {{movieOverview.vote_average | number:'1.1-1'}}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     <tr *ngIf="movieOverview.status">
                         <th scope="col">Status</th>
                         <td>{{movieOverview.status}}</td>
@@ -36,6 +54,10 @@
                         <td>
                             <span *ngFor="let lang of movieOverview.spoken_languages"> {{lang.name}}, </span>etc.
                         </td>
+                    </tr>
+                    <tr *ngIf="movieOverview.tagline">
+                        <th scope="row">Tagline</th>
+                        <td>{{movieOverview.tagline}}</td>
                     </tr>
                     <tr *ngIf="movieOverview.adult">
                         <th scope="row">Adult</th>
@@ -80,14 +102,6 @@
                     <tr *ngIf="movieOverview.vote_count">
                         <th scope="row">Vote Count</th>
                         <td>{{movieOverview.vote_count}}</td>
-                    </tr>
-                    <tr *ngIf="movieOverview.vote_average">
-                        <th scope="row">Vote Average</th>
-                        <td>{{movieOverview.vote_average}}</td>
-                    </tr>
-                    <tr *ngIf="movieOverview.tagline">
-                        <th scope="row">Tagline</th>
-                        <td>{{movieOverview.tagline}}</td>
                     </tr>
                     <tr *ngIf="movieOverview.homepage">
                         <th scope="row">Homepage</th>

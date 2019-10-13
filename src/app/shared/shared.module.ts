@@ -31,6 +31,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MoviesGridViewComponent } from './components/movies-grid-view/movies-grid-view.component';
 import { MoviesTableViewComponent } from './components/movies-table-view/movies-table-view.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
     MatGridListModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     LoadingSpinnerComponent,

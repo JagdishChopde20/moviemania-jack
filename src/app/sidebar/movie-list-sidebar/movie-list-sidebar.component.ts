@@ -28,10 +28,14 @@ export class MovieListSidebarComponent implements OnInit, OnDestroy {
   navigateToRelatedMoviesByMovieId(categoryName) {
     this.moviesService.GetRelatedMoviesByMovieId(this.movieId, categoryName);
     this.router.navigate(['', { outlets: { primary: ['core'], sidebar: ['movies-sidebar', this.movieId] } }]);
+
+    window.scrollTo(0, 0);
   }
 
   navigateToMoviesByCategory(categoryName) {
     this.moviesService.GetMoviesByCategory(categoryName);
     this.router.navigate(['', { outlets: { primary: ['core'], sidebar: ['movies-sidebar'] } }]);
+    
+    window.scrollTo(0, 0);
   }
 }

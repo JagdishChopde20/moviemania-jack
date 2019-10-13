@@ -21,21 +21,24 @@
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                 </button>
                 <span>
-                    <button mat-button style="font-size: 20px;"
+                    <button mat-button 
+                        style="font-size: 20px; font-weight: lighter; outline: none;"
                         [routerLink]="['', { outlets: { primary: ['core'], sidebar: ['movies-sidebar'] } }]">
                         {{title}}
                     </button></span>
                 <!-- This fills the remaining space of the current row -->
                 <span class="example-fill-remaining-space"></span>
-                
+
                 <mat-button-toggle-group #group="matButtonToggleGroup" (click)="changeTheme(group.value)">
                     <mat-button-toggle value="dark" aria-label="Text align left"
                         style="background-color: black; color: white;">
-                        <mat-icon style="color: deeppink;">format_color_fill</mat-icon> <span *ngIf="!(isHandset$ | async)">Dark</span> 
+                        <mat-icon style="color: deeppink;">format_color_fill</mat-icon> <span
+                            *ngIf="!(isHandset$ | async)" style="font-weight: lighter;">Dark</span>
                     </mat-button-toggle>
                     <mat-button-toggle value="light" aria-label="Text align center"
                         style="background-color: white; color: black;">
-                        <mat-icon style="color: dodgerblue">format_color_fill</mat-icon> <span *ngIf="!(isHandset$ | async)">Light</span> 
+                        <mat-icon style="color: dodgerblue">format_color_fill</mat-icon> <span
+                            *ngIf="!(isHandset$ | async)" style="font-weight: lighter;">Light</span>
                     </mat-button-toggle>
                 </mat-button-toggle-group>
 
@@ -46,7 +49,8 @@
 
             <mat-toolbar color="primary">
                 <small>
-                   <a mat-button href="https://www.themoviedb.org" target="_blank"><img class="img img-fluid" src="../../../../assets/images/TMDB_logo.png" style="height: 50px;"></a> 
+                    <a mat-button href="https://www.themoviedb.org" target="_blank"><img class="img img-fluid"
+                            src="../../../../assets/images/TMDB_logo.png" style="height: 50px;"></a>
                 </small>
                 <span class="example-fill-remaining-space"></span>
                 <small>
@@ -59,4 +63,6 @@
     </mat-sidenav-container>
 </div>
 
-<button mat-mini-fab color="warn" *ngIf="isShow" (click)="gotoTop()" class="button-gototop"><mat-icon>arrow_upward</mat-icon></button>
+<button mat-mini-fab color="warn" *ngIf="isShow" (click)="gotoTop()" class="button-gototop">
+    <mat-icon>arrow_upward</mat-icon>
+</button>

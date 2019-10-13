@@ -11,7 +11,7 @@ import {Location} from '@angular/common';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'MOVIEMANIA';
+  title = 'Moviemania';
   isShow: boolean;
   topPosToStartShowing = 100;
 

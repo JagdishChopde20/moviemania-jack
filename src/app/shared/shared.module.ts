@@ -32,6 +32,7 @@ import { MoviesGridViewComponent } from './components/movies-grid-view/movies-gr
 import { MoviesTableViewComponent } from './components/movies-table-view/movies-table-view.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MovieDetailsCreditsComponent } from './components/movie-details-credits/movie-details-credits.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MovieDetailsImagesComponent, 
     MoviesGridViewComponent, 
     MoviesTableViewComponent, 
+    MovieDetailsCreditsComponent, 
   ],
   imports: [
     CommonModule,
@@ -70,7 +72,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatGridListModule,
     MatTabsModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   exports: [
     LoadingSpinnerComponent,
@@ -100,6 +102,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     YearPickerComponent, 
     MoviesGridViewComponent,
     MoviesTableViewComponent, 
+    MovieDetailsCreditsComponent
   ],
   providers: [
     TmdbMoviesService,

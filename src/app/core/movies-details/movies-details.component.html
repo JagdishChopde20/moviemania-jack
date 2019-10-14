@@ -28,6 +28,14 @@
           </ng-template>
       <app-movie-details-videos [movieVideos]="result.videos.results"></app-movie-details-videos> 
     </mat-tab>
+
+    <mat-tab> 
+      <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">supervisor_account</mat-icon> &nbsp;
+          CAST
+        </ng-template>
+    <app-movie-details-credits [movieId]="result.id"></app-movie-details-credits> 
+  </mat-tab>
   </mat-tab-group>
 
   <!-- <pre class="text-light"> {{ result.images | json}} </pre> -->

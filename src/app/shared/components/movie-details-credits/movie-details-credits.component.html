@@ -1,0 +1,12 @@
+<div class="row w-100 mt-3 ml-1" *ngIf="results$ | async as results">
+    <div class="col-4 col-sm-4 col-md-3 col-xl-2 mb-3" *ngFor="let result of results.cast">
+        <mat-card>
+            <img mat-card-image src="{{ moviesService.imageBaseUrl_w300 + result.profile_path }}" alt="{{result.title}}"
+                onError="this.src='../../../../assets/images/ImageNotFound.jpg';">
+            <mat-card-content>
+                {{result.name}}
+                <mat-card-subtitle> <small>{{result.character}}</small> </mat-card-subtitle>
+              </mat-card-content>
+        </mat-card>
+    </div>
+</div>

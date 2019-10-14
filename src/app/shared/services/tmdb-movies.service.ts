@@ -198,4 +198,10 @@ export class TmdbMoviesService {
     return this.http.get(movieDetails_url).pipe(map(data => data));
   }
 
+  // Get Movie Details
+  GetMovieCredits(movieId: string) {
+    let movieCredits_url = myGlobals.apiBaseUrl + "movie/" + movieId + "/credits?api_key=" + myGlobals.apiKey;
+    return this.http.get(movieCredits_url).pipe(map(data => data));
+  }
+
 }

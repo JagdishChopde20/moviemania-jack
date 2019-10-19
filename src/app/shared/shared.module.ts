@@ -33,6 +33,8 @@ import { MoviesTableViewComponent } from './components/movies-table-view/movies-
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovieDetailsCreditsComponent } from './components/movie-details-credits/movie-details-credits.component';
+import { MovieDetailsReviewsComponent } from './components/movie-details-reviews/movie-details-reviews.component';
+import { MovieLanguageFullnamePipe } from './pipes/movie-language-fullname.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { MovieDetailsCreditsComponent } from './components/movie-details-credits
     MoviesGridViewComponent, 
     MoviesTableViewComponent, 
     MovieDetailsCreditsComponent, 
+    MovieDetailsReviewsComponent, 
+    MovieLanguageFullnamePipe, 
   ],
   imports: [
     CommonModule,
@@ -102,7 +106,9 @@ import { MovieDetailsCreditsComponent } from './components/movie-details-credits
     YearPickerComponent, 
     MoviesGridViewComponent,
     MoviesTableViewComponent, 
-    MovieDetailsCreditsComponent
+    MovieDetailsCreditsComponent,
+    MovieDetailsReviewsComponent,
+    MovieLanguageFullnamePipe, 
   ],
   providers: [
     TmdbMoviesService,

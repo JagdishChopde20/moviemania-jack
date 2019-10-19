@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ViewEncapsulation } from '
 import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAdultConfirmComponent } from '../../shared/components/dialog-adult-confirm/dialog-adult-confirm.component';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies-list',
@@ -25,6 +26,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       // get the lastly stoared user view preference and set it as current view (gridview or listview)
     let userView = localStorage.getItem("isGridView");
     this.isGridView = (userView && userView == 'false') ? false : true;
+
+    // Get languages data
+    this.moviesService.GetLanguages();    
   }
 
   ngOnDestroy() {

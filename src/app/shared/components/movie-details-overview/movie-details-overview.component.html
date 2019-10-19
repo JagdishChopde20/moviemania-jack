@@ -47,7 +47,7 @@
                     </tr>
                     <tr *ngIf="movieOverview.original_language">
                         <th scope="row">Language</th>
-                        <td>{{movieOverview.original_language}}</td>
+                        <td>{{movieOverview.original_language | movieLanguageFullname}}</td>
                     </tr>
                     <tr *ngIf="movieOverview.spoken_languages">
                         <th scope="row">Spoken Languages</th>

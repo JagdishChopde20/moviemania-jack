@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as _ from 'lodash';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as myGlobals from '../globals';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -40,7 +40,7 @@ export class TmdbMoviesService {
   languagesResult$: Observable<any>;
   genresResult$: Observable<any>;
   certificationsResult$: Observable<any>;
-
+  languagesResult: any;
 
   // filters - search movies
   searchQuery: string;
@@ -172,6 +172,10 @@ export class TmdbMoviesService {
   GetLanguages() {
     let languages_url = myGlobals.apiBaseUrl + "configuration/languages?api_key=" + myGlobals.apiKey;
     this.languagesResult$ = this.http.get(languages_url).pipe(map(data => _.values(data)));
+
+    this.languagesResult$.pipe(take(1)).subscribe(res => {
+      this.languagesResult = res;
+    });
   }
 
   // Get genres
@@ -202,6 +206,12 @@ export class TmdbMoviesService {
   GetMovieCredits(movieId: string) {
     let movieCredits_url = myGlobals.apiBaseUrl + "movie/" + movieId + "/credits?api_key=" + myGlobals.apiKey;
     return this.http.get(movieCredits_url).pipe(map(data => data));
+  }
+
+  // Get Movie Reviews
+  GetMovieReviewsByModieId(movieId: string) {
+    let movieReviews_url = myGlobals.apiBaseUrl + "movie/" + movieId + "/reviews?api_key=" + myGlobals.apiKey;
+    return this.http.get(movieReviews_url).pipe(map(data => data));
   }
 
 }

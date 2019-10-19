@@ -14,7 +14,6 @@ export class MovieDetailsCreditsComponent implements OnInit {
 
   ngOnInit() {
      this.results$ = this.moviesService.GetMovieCredits(this.movieId);
-     console.log(this.results$);
   }
 
 }

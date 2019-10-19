@@ -3,39 +3,47 @@
   <div class="row mx-4 mt-3">
     <p class="display-4" style="font-size: 6vw">{{result.title}}</p>
   </div>
-  
+
   <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-    <mat-tab> 
-        <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">list</mat-icon> &nbsp;
-            OVERVIEW
-          </ng-template>
-      <app-movie-details-overview [movieOverview]="result"></app-movie-details-overview> 
-    </mat-tab>
-
-    <mat-tab> 
-        <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">image</mat-icon> &nbsp;
-            IMAGES ({{ result.images.backdrops.length + result.images.posters.length }})
-          </ng-template>
-      <app-movie-details-images [movieImages]="result.images"></app-movie-details-images> 
-    </mat-tab>
-
-    <mat-tab> 
-        <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">movie</mat-icon> &nbsp;
-            VIDEOS ({{result.videos.results.length}})
-          </ng-template>
-      <app-movie-details-videos [movieVideos]="result.videos.results"></app-movie-details-videos> 
-    </mat-tab>
-
-    <mat-tab> 
+    <mat-tab>
       <ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">supervisor_account</mat-icon> &nbsp;
-          CAST
-        </ng-template>
-    <app-movie-details-credits [movieId]="result.id"></app-movie-details-credits> 
-  </mat-tab>
+        <mat-icon class="example-tab-icon">list</mat-icon> &nbsp;
+        OVERVIEW
+      </ng-template>
+      <app-movie-details-overview [movieOverview]="result"></app-movie-details-overview>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">image</mat-icon> &nbsp;
+        IMAGES ({{ result.images.backdrops.length + result.images.posters.length }})
+      </ng-template>
+      <app-movie-details-images [movieImages]="result.images"></app-movie-details-images>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">movie</mat-icon> &nbsp;
+        VIDEOS ({{result.videos.results.length}})
+      </ng-template>
+      <app-movie-details-videos [movieVideos]="result.videos.results"></app-movie-details-videos>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">supervisor_account</mat-icon> &nbsp;
+        CAST
+      </ng-template>
+      <app-movie-details-credits [movieId]="result.id"></app-movie-details-credits>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">folder</mat-icon> &nbsp;
+        REVIEWS
+      </ng-template>
+      <app-movie-details-reviews [movieId]="result.id"></app-movie-details-reviews>
+    </mat-tab>
   </mat-tab-group>
 
   <!-- <pre class="text-light"> {{ result.images | json}} </pre> -->

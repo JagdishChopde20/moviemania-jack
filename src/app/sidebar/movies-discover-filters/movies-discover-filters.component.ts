@@ -38,12 +38,14 @@ export class MoviesDiscoverFiltersComponent implements OnInit, OnDestroy {
     // this.moviesService.GetLanguages();
     this.moviesService.GetGenres();
     this.moviesService.GetCertifications();
-    this.moviesService.certificationsResult$.pipe(take(1)).subscribe(res => {
-      this.certifications = res;
-    });
-    this.moviesService.languagesResult$.pipe(take(1)).subscribe(res => {
-      this.languages = res;
-    });
+
+      this.moviesService.certificationsResult$.pipe(take(1)).subscribe(res => {
+        this.certifications = res;
+      });
+
+      this.moviesService.languagesResult$.pipe(take(1)).subscribe(res => {
+        this.languages = res;
+      });
 
     // Filter the autocomplete list as per user input
     this.subscription = this.frmCtrl_language.valueChanges
@@ -116,7 +118,7 @@ export class MoviesDiscoverFiltersComponent implements OnInit, OnDestroy {
       data: { title: 'Enable Adult Content', text: 'Please provide your birthdate to proceed' }
     });
 
-    dialogRef.afterClosed().subscribe(result => {   
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
         let dateDiff = new Date().getFullYear() - new Date(result).getFullYear();
         if (dateDiff >= 18) {

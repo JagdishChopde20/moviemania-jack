@@ -12,7 +12,7 @@
                 </mat-hint>
             </mat-form-field>
         </div>
-        <div class="col-2">
+        <div class="col-2 d-none d-md-block">
             <app-year-picker [touchUi]="!(moviesService.isHandset$ | async)"></app-year-picker>
         </div>
         <div class="col-auto mt-2">
@@ -24,7 +24,7 @@
     </div>
 
     <div *ngIf="moviesService.discoverResult$ | async as results else noData" class="m-2">
-        <div class="row" *ngIf="results && results.length > 0">
+        <div class="row d-none d-md-block" *ngIf="results && results.length > 0">
             <mat-button-toggle-group #group="matButtonToggleGroup" (click)="switchView(group.value)"
                 class="ml-auto m-2" [value]="isGridView? 'grid':'list'">
                 <mat-button-toggle value="grid" aria-label="Text align left" is>

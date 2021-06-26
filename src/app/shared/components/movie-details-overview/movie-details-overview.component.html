@@ -2,7 +2,7 @@
 
 
 
-<div class="container-fluid" *ngIf="movieOverview else noData">
+<div class="container-fluid" *ngIf="movieOverview else noData" style="overflow-x: hidden;">
 
     <div class="row my-3">
         <div class="col-md-4">
@@ -111,7 +111,7 @@
                         <th scope="row">Belongs To Collection</th>
                         <td>
                             {{movieOverview.belongs_to_collection.name}}
-
+                            <br/>
                             <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.belongs_to_collection.poster_path }}"
                                 class="img-fluid">
                             <img src="{{moviesService.imageBaseUrl_w780 + movieOverview.belongs_to_collection.backdrop_path }}"

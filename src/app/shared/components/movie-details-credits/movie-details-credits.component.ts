@@ -10,7 +10,7 @@ export class MovieDetailsCreditsComponent implements OnInit {
   @Input('movieId') movieId;
   results$;
 
-  constructor(private moviesService: TmdbMoviesService) { }
+  constructor(public moviesService: TmdbMoviesService) { }
 
   ngOnInit() {
      this.results$ = this.moviesService.GetMovieCredits(this.movieId);

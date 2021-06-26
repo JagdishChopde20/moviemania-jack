@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private moviesService: TmdbMoviesService, private _location: Location) { }
+  constructor(private breakpointObserver: BreakpointObserver, public moviesService: TmdbMoviesService, private _location: Location) { }
 
   ngOnInit() {
     // get the lastly stoared user theme preference and set it as current theme

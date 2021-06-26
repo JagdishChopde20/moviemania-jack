@@ -12,7 +12,7 @@ export class MovieDetailsVideosComponent implements OnInit {
 
   movieVideoUrls = [];
 
-  constructor(private sanitizer: DomSanitizer, private moviesService: TmdbMoviesService) { }
+  constructor(private sanitizer: DomSanitizer, public moviesService: TmdbMoviesService) { }
 
   ngOnInit() {
     for(let video of this.movieVideos) {

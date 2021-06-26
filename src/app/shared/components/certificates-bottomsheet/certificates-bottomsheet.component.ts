@@ -10,8 +10,8 @@ import { TmdbMoviesService } from '../../services/tmdb-movies.service';
 export class CertificatesBottomsheetComponent implements OnInit {
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<CertificatesBottomsheetComponent>,
-    @Inject(MAT_BOTTOM_SHEET_DATA) private certificatesData: any,
-    private moviesService: TmdbMoviesService) { }
+    @Inject(MAT_BOTTOM_SHEET_DATA) public certificatesData: any,
+    public moviesService: TmdbMoviesService) { }
 
   ngOnInit() {
   }

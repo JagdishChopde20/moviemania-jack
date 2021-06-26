@@ -9,7 +9,7 @@ import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
 export class MovieDetailsOverviewComponent implements OnInit {
   @Input('movieOverview') movieOverview: any;
 
-  constructor(private moviesService: TmdbMoviesService) { }
+  constructor(public moviesService: TmdbMoviesService) { }
 
   ngOnInit() {  
   }

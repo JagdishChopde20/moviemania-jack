@@ -23,7 +23,7 @@ export class MoviesTableViewComponent implements OnInit {
 
   ELEMENT_DATA: MovieElement[] = [];
 
-  constructor(private moviesService: TmdbMoviesService) { }
+  constructor(public moviesService: TmdbMoviesService) { }
 
   ngOnInit() {
     this.ELEMENT_DATA = this.results;

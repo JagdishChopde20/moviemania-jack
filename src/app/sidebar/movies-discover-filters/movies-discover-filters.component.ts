@@ -32,7 +32,7 @@ export class MoviesDiscoverFiltersComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private moviesService: TmdbMoviesService, private _bottomSheet: MatBottomSheet, public dialog: MatDialog) { }
+  constructor(public moviesService: TmdbMoviesService, private _bottomSheet: MatBottomSheet, public dialog: MatDialog) { }
 
   ngOnInit() {
     // this.moviesService.GetLanguages();

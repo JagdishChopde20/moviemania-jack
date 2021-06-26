@@ -9,7 +9,7 @@ import { TmdbMoviesService } from '../../services/tmdb-movies.service';
 export class MoviesGridViewComponent implements OnInit {
   @Input('results') results: any;
 
-  constructor(private moviesService: TmdbMoviesService) { }
+  constructor(public moviesService: TmdbMoviesService) { }
 
   ngOnInit() {
   }

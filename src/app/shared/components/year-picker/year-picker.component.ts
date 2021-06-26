@@ -109,7 +109,7 @@ export class YearPickerComponent
   /** send the focus away from the input so it doesn't open again */
   _takeFocusAway = (datepicker: MatDatepicker<Moment>) => { };
 
-  constructor(private moviesService: TmdbMoviesService) { }
+  constructor(public moviesService: TmdbMoviesService) { }
 
   ngAfterViewInit() {
     //this._takeFocusAway = this.parent._takeFocusAway;

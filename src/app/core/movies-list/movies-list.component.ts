@@ -16,7 +16,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   results: any;
   isGridView: boolean;
 
-  constructor(private moviesService: TmdbMoviesService, public dialog: MatDialog) { }
+  constructor(public moviesService: TmdbMoviesService, public dialog: MatDialog) { }
 
   ngOnInit() {
     // Load discover as initial movies

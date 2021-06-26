@@ -25,7 +25,7 @@ export class ChipsKeywordsComponent implements OnInit, OnDestroy {
   @ViewChild('fruitInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  constructor(private movieService: TmdbMoviesService) {
+  constructor(public movieService: TmdbMoviesService) {
     this.subscription = this.frmCtrl_keyworkds.valueChanges
     .subscribe(value => {
       if (value && (typeof (value) == 'string')) {

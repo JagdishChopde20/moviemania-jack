@@ -8,7 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./dialog-adult-confirm.component.css']
 })
 export class DialogAdultConfirmComponent implements OnInit {
-  birthdate: Date;
+  //birthdate: Date; [(ngModel)]="birthdate" 
   maxDate: Date = new Date();
 
   frmCtrl_birthdate = new FormControl(new Date(), [Validators.required]);

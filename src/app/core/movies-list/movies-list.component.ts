@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { TmdbMoviesService } from 'src/app/shared/services/tmdb-movies.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAdultConfirmComponent } from '../../shared/components/dialog-adult-confirm/dialog-adult-confirm.component';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies-list',

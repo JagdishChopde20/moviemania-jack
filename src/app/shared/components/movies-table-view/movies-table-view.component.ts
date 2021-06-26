@@ -18,7 +18,7 @@ export class MoviesTableViewComponent implements OnInit {
   @Input('results') results: any;
 
   dataSource;
-  columnsToDisplay = ['title', 'vote_average', 'release_date'];
+  columnsToDisplay = ['title', 'vote_average', 'release_date'];//
   expandedElement: MovieElement | null;
 
   ELEMENT_DATA: MovieElement[] = [];

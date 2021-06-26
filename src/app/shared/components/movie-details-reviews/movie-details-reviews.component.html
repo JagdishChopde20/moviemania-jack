@@ -2,9 +2,12 @@
     <mat-list *ngIf="results.results.length > 0 else noReviews">
         <!-- <h3 mat-subheader>REVIEWS</h3> -->
         <mat-list-item *ngFor="let review of results.results" class="my-3">
-            <mat-icon mat-list-icon>folder</mat-icon>
-            <h4 mat-line>{{review.author}}</h4>
-            <p mat-line class="text-secondary"> {{review.content}} </p>
+            <div mat-line>
+                <h4>
+                    <mat-icon>account_circle</mat-icon> &nbsp;&nbsp; {{review.author}}
+                </h4>
+            </div>
+            <p mat-line class="text-secondary" style="text-align:justify"> {{review.content}} </p>
             <a mat-line href="{{review.url}}" target="_blank">read more...</a>
             <mat-divider></mat-divider>
         </mat-list-item>

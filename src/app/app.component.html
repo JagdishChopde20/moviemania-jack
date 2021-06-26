@@ -1,7 +1,6 @@
 <div [class.moviemania-light-theme]="moviesService.isLightTheme">
     <mat-sidenav-container class="sidenav-container">
-        <mat-sidenav #drawer class="sidenav" fixedInViewport
-            [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
             [opened]="(isHandset$ | async) === false">
 
             <!-- Add Sidebar Content Here -->
@@ -11,34 +10,27 @@
         <mat-sidenav-content>
 
             <mat-toolbar color="primary" class="app-toolbar">
-                <button type="button" mat-icon-button (click)="goBack()" style="outline: none" mat-mini-fab
-                    color="primary">
+                <button *ngIf="navigationUrl != '/core'" type="button" mat-icon-button (click)="goBack()" style="outline: none" mat-mini-fab color="primary">
                     <mat-icon aria-label="Side nav toggle icon">keyboard_arrow_left</mat-icon>
                 </button>
-                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-                    style="outline: none">
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" style="outline: none">
                     <!-- *ngIf="isHandset$ | async" -->
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                 </button>
                 <span>
-                    <button mat-button 
-                        style="font-size: 20px; font-weight: lighter; outline: none;"
+                    <button mat-button style="font-size: 20px; font-weight: lighter; outline: none; margin-left: -5px;"
                         [routerLink]="['', { outlets: { primary: ['core'], sidebar: ['movies-sidebar'] } }]">
                         {{title}}
                     </button></span>
                 <!-- This fills the remaining space of the current row -->
                 <span class="example-fill-remaining-space"></span>
 
-                <mat-button-toggle-group #group="matButtonToggleGroup" (click)="changeTheme(group.value)">
-                    <mat-button-toggle value="dark" aria-label="Text align left"
-                        style="background-color: black; color: white;">
-                        <mat-icon style="color: deeppink;">format_color_fill</mat-icon> <span
-                            *ngIf="!(isHandset$ | async)" style="font-weight: lighter;">Dark</span>
+                <mat-button-toggle-group #group="matButtonToggleGroup" (click)="changeTheme(group.value)" style="zoom: .8">
+                    <mat-button-toggle value="dark" aria-label="Text align left" style="background-color: black; color: white;">
+                        <mat-icon style="color: deeppink;">format_color_fill</mat-icon> <span *ngIf="!(isHandset$ | async)" style="font-weight: lighter;">Dark</span>
                     </mat-button-toggle>
-                    <mat-button-toggle value="light" aria-label="Text align center"
-                        style="background-color: white; color: black;">
-                        <mat-icon style="color: dodgerblue">format_color_fill</mat-icon> <span
-                            *ngIf="!(isHandset$ | async)" style="font-weight: lighter;">Light</span>
+                    <mat-button-toggle value="light" aria-label="Text align center" style="background-color: white; color: black;">
+                        <mat-icon style="color: dodgerblue">format_color_fill</mat-icon> <span *ngIf="!(isHandset$ | async)" style="font-weight: lighter;">Light</span>
                     </mat-button-toggle>
                 </mat-button-toggle-group>
 
@@ -47,19 +39,16 @@
             <!-- Add Primary Content Here -->
             <router-outlet></router-outlet>
 
-            <mat-toolbar color="primary">
-                <small>
+            <mat-toolbar color="primary" class="center-box">
+                <!-- <small>
                     <a mat-stroked-button href="https://github.com/JagdishChopde20/moviemania-jack" target="_blank">
                         <mat-icon>code</mat-icon>
                         <span class="d-none d-md-inline-block">Download code from GitHub</span> 
                     </a>
-                    <!-- <img class="img img-fluid"
-                            src="../../../../assets/images/TMDB_logo.png" style="height: 50px;"> -->
                 </small>
-                <span class="example-fill-remaining-space"></span>
+                <span class="example-fill-remaining-space"></span> -->
                 <small>
-                    <a mat-stroked-button href="https://jagdishchopde.wixsite.com/profile" target="_blank">&copy; 2019 - Jagdish
-                        Chopde</a>
+                    <a mat-button href="https://jagdishchopde.wixsite.com/profile" target="_blank">&copy; HiJack Studios - 2021 </a>
                 </small>
             </mat-toolbar>
 

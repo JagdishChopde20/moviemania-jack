@@ -40,3 +40,8 @@ a:link, a:active {
 a:hover {
   color: antiquewhite;
 }
+
+.center-box {
+  display: flex;
+  justify-content: center;
+}

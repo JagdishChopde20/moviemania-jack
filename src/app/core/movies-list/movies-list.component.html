@@ -3,12 +3,11 @@
         <div class="col">
             <mat-form-field appearance="outline" style="width: 100%">
                 <mat-label>Search Movies</mat-label>
-                <input matInput [(ngModel)]="moviesService.searchQuery" (keyup.enter)="searchMovies()"
-                    placeholder="Type your query...">
+                <input matInput [(ngModel)]="moviesService.searchQuery" (keyup.enter)="searchMovies()" placeholder="Type your query...">
                 <mat-icon matSuffix>search</mat-icon>
                 <mat-hint>
                     Note: Adult filter is {{ moviesService.include_adult ? 'ON' : 'OFF' }}.
-                    <a mat-button (click)="changeAdultFilter()">change</a>
+                    <a mat-button color="primary" (click)="changeAdultFilter()">Change</a>
                 </mat-hint>
             </mat-form-field>
         </div>
@@ -16,17 +15,15 @@
             <app-year-picker [touchUi]="!(moviesService.isHandset$ | async)"></app-year-picker>
         </div>
         <div class="col-auto mt-2">
-            <button mat-fab (click)="searchMovies()" aria-label="Example icon-button with a heart icon"
-                style="outline: none">
+            <button mat-fab (click)="searchMovies()" aria-label="Example icon-button with a heart icon" style="outline: none">
                 <mat-icon>search</mat-icon>
             </button>
         </div>
     </div>
-
+    <mat-divider></mat-divider>
     <div *ngIf="moviesService.discoverResult$ | async as results else noData" class="m-2">
-        <div class="row d-none d-md-block" *ngIf="results && results.length > 0">
-            <mat-button-toggle-group #group="matButtonToggleGroup" (click)="switchView(group.value)"
-                class="ml-auto m-2" [value]="isGridView? 'grid':'list'">
+        <div class="row text-center" *ngIf="results && results.length > 0">
+            <mat-button-toggle-group #group="matButtonToggleGroup" (click)="switchView(group.value)" class="mx-auto m-2" [value]="isGridView? 'grid':'list'" style="zoom: .8">
                 <mat-button-toggle value="grid" aria-label="Text align left" is>
                     <mat-icon>apps</mat-icon> Grid View
                 </mat-button-toggle>
@@ -35,6 +32,7 @@
                 </mat-button-toggle>
             </mat-button-toggle-group>
         </div>
+        <br>
         <div class="row">
             <app-movies-grid-view *ngIf="isGridView" [results]="results" class="ml-2"></app-movies-grid-view>
             <app-movies-table-view *ngIf="!isGridView" [results]="results"></app-movies-table-view>
@@ -44,22 +42,23 @@
     <ng-template #noData>
         <app-loading-spinner></app-loading-spinner>
     </ng-template>
-    <hr>
+
+    <mat-divider></mat-divider>
+
     <div *ngIf="moviesService.discoverResult$" class="row my-3">
-        <div class="col-md-6 mt-2">
-            {{moviesService.total_results | number}} results found. | showing page {{moviesService.page | number}} out
-            of
-            {{moviesService.total_pages | number}} pages. &nbsp;&nbsp;
+        <div class="col-sm-12 col-md-6 my-2 text-center">
+            <small>
+                {{moviesService.total_results | number}} results found. | showing page {{moviesService.page | number}} out of
+                {{moviesService.total_pages | number}} pages. &nbsp;&nbsp;
+            </small>
         </div>
-        <div class="col-md-6">
-            <div class="float-right">
-                <button mat-raised-button [disabled]="moviesService.page <= 1" color="accent" (click)="previousPage()"
-                    style="outline: none;">
+        <div class="col-sm-12 col-md-6 text-center">
+            <div>
+                <button mat-raised-button [disabled]="moviesService.page <= 1" color="accent" (click)="previousPage()" style="outline: none;">
                     <mat-icon>keyboard_arrow_left</mat-icon> Previous Page
                 </button>
                 <button mat-mini-fab color="warn" class="mx-2" style="outline: none;"> {{moviesService.page}} </button>
-                <button mat-raised-button [disabled]="moviesService.page >= moviesService.total_pages" color="accent"
-                    (click)="nextPage()" style="outline: none;">
+                <button mat-raised-button [disabled]="moviesService.page >= moviesService.total_pages" color="accent" (click)="nextPage()" style="outline: none;">
                     Next Page <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
             </div>

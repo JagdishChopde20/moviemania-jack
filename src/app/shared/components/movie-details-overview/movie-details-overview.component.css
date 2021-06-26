@@ -1,12 +1,11 @@
+.mat-spinner-color-bad::ng-deep circle {
+  stroke: rgb(238, 31, 31) !important;
+}
 
-.mat-spinner-color-bad::ng-deep circle{
-    stroke: rgb(238, 31, 31) !important;
-  }
-  
-  .mat-spinner-color-average::ng-deep circle{
-    stroke: rgb(243, 158, 0) !important;
-  }
-  
-  .mat-spinner-color-good::ng-deep circle{
-    stroke: rgb(60, 133, 0) !important;
-  }
+.mat-spinner-color-average::ng-deep circle {
+  stroke: rgb(243, 158, 0) !important;
+}
+
+.mat-spinner-color-good::ng-deep circle {
+  stroke: rgb(60, 133, 0) !important;
+}

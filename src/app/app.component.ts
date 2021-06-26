@@ -11,9 +11,10 @@ import {Location} from '@angular/common';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Moviemania';
+  title = 'Movie-Discover';
   isShow: boolean;
   topPosToStartShowing = 100;
+  navigationUrl = '/core';
 
   isHandset$: Observable<boolean> = this.moviesService.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -27,6 +28,10 @@ export class AppComponent implements OnInit {
     // get the lastly stoared user theme preference and set it as current theme
     let userTheme = localStorage.getItem("isLightTheme");
     this.moviesService.isLightTheme = (userTheme && userTheme == 'true') ? true : false;
+
+    this._location.onUrlChange( (url: string, state: unknown) => {
+      this.navigationUrl = url;
+    })
   }
 
   changeTheme(themeName) {

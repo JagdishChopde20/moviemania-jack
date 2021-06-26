@@ -11,5 +11,5 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="birthdate" cdkFocusInitial [disabled]="frmCtrl_birthdate.invalid">{{data.title}}</button>
+    <button mat-button [mat-dialog-close]="frmCtrl_birthdate.value" cdkFocusInitial [disabled]="frmCtrl_birthdate.invalid">{{data.title}}</button>
 </div>

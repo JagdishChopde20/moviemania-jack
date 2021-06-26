@@ -1,5 +1,5 @@
 <div class="row w-100">
-    <div class="col-4 col-sm-4 col-md-3 col-xl-2 mb-3" *ngFor="let result of results">
+    <div class="mycol col-4 col-sm-4 col-md-3 col-xl-2 mb-3" *ngFor="let result of results">
         <mat-card
             [routerLink]="['', { outlets: { primary: ['movies-details', result.id], sidebar: ['movies-sidebar', result.id] } }]"
             style="padding-bottom: 0px; cursor: pointer;" class="img-hover-zoom">

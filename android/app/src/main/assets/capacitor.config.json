@@ -1,0 +1,6 @@
+{
+	"appId": "com.hijack.moviediscover",
+	"appName": "moviemania",
+	"webDir": "dist/moviemania",
+	"bundledWebRuntime": false
+}

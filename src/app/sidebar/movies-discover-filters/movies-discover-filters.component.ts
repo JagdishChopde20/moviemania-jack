@@ -35,9 +35,10 @@ export class MoviesDiscoverFiltersComponent implements OnInit, OnDestroy {
   constructor(public moviesService: TmdbMoviesService, private _bottomSheet: MatBottomSheet, public dialog: MatDialog) { }
 
   ngOnInit() {
-    // this.moviesService.GetLanguages();
-    this.moviesService.GetGenres();
-    this.moviesService.GetCertifications();
+    try {
+      // this.moviesService.GetLanguages();
+      this.moviesService.GetGenres();
+      this.moviesService.GetCertifications();
 
       this.moviesService.certificationsResult$.pipe(take(1)).subscribe(res => {
         this.certifications = res;
@@ -47,15 +48,18 @@ export class MoviesDiscoverFiltersComponent implements OnInit, OnDestroy {
         this.languages = res;
       });
 
-    // Filter the autocomplete list as per user input
-    this.subscription = this.frmCtrl_language.valueChanges
-      .subscribe(value => {
-        if (value && (typeof (value) == 'string')) {
-          this.filteredOptions_Languages = this._filterLanguages(value);
-          this.moviesService.with_original_language = null;
-        }
-        else this.moviesService.with_original_language = value.iso_639_1;
-      });
+      // Filter the autocomplete list as per user input
+      this.subscription = this.frmCtrl_language.valueChanges
+        .subscribe(value => {
+          if (value && (typeof (value) == 'string')) {
+            this.filteredOptions_Languages = this._filterLanguages(value);
+            this.moviesService.with_original_language = null;
+          }
+          else this.moviesService.with_original_language = value.iso_639_1;
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   ngOnDestroy() {
